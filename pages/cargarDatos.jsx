@@ -9,11 +9,13 @@ export default function CargarDatos() {
         descripcion: ""
     }
 
-    const lateralVacio =
-        [{
-            nombreItem: "",
-            valorItem: ""
-        }]
+    const objLateralVacio =
+    {
+        nombreItem: "",
+        valorItem: ""
+    }
+
+    const lateralVacio = [objLateralVacio];
 
     const principalVacio = {}
 
@@ -25,7 +27,7 @@ export default function CargarDatos() {
         <div>
             <h2>Cargar datos de CV</h2>
             <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-            <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} />
+            <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
             <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} />
         </div>
     )
