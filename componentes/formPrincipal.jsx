@@ -13,7 +13,7 @@ export default function FormPrincipal(props) {
     }
 
     return (
-        <>
+        <section>
             <h3>Datos del cuerpo principal</h3>
             <Form className="card2" onSubmit={guardarForm}>
                 <FormGroup>
@@ -32,6 +32,6 @@ export default function FormPrincipal(props) {
                 </FormGroup>
                 <Button type="submit" className="mt-3" color="primary" size="lg">Guardar datos</Button>
             </Form>
-        </>
+        </section>
     )
 }

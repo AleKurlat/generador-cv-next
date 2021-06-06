@@ -77,11 +77,12 @@ img {border-radius: 7px;}
     border-radius: 7px;
     padding-bottom: 15px;
     padding-top: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card2 > div {
     padding:5px;
-    padding-bottom: 0;
 }
 
 .header h2{
@@ -99,4 +100,14 @@ p:last-child {
 
 .textoLateral> div {
     margin-bottom: 8px;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
 }

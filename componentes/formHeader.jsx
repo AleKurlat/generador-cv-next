@@ -8,7 +8,7 @@ export default function FormHeader(props) {
     };
 
     return (
-        <>
+        <section>
             <h3>Datos de la cabecera</h3>
             <Form className="card2">
                 <FormGroup>
@@ -26,6 +26,6 @@ export default function FormHeader(props) {
                     </Input>
                 </FormGroup>
             </Form>
-        </>
+        </section>
     )
 }

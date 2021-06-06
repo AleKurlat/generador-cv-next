@@ -7,15 +7,10 @@ export default function FormImagen(props) {
         setUrlImagen(e.target.value);
     };
 
-    function guardarForm(evento) {
-        evento.preventDefault();
-        console.log(urlImagen);
-    }
-
     return (
-        <>
+        <section>
             <h3>Foto de CV</h3>
-            <Form className="card2" onSubmit={guardarForm}>
+            <Form className="card2">
                 <FormGroup>
                     <Label>
                         Foto de CV
@@ -23,8 +18,7 @@ export default function FormImagen(props) {
                     <Input type="text" onChange={handler} value={urlImagen}>
                     </Input>
                 </FormGroup>
-                <Button type="submit" className="mt-3" color="primary" size="lg">Mostrar datos</Button>
             </Form>
-        </>
+        </section>
     )
 }

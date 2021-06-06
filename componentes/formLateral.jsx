@@ -5,7 +5,7 @@ export default function FormLateral(props) {
 
     let arrayCampos = datosLateral.map((el, i) => {
         return (
-            <div key={i}>
+            <div key={i} className="card2">
                 <FormGroup>
                     <Label>
                         Tipo de dato (ej: teléfono, mail, etc.)
@@ -20,6 +20,7 @@ export default function FormLateral(props) {
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="valorItem" value={datosLateral[i].valorItem}>
                     </Input>
                 </FormGroup>
+                <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar campo</Button>
             </div>
         )
     });
@@ -30,25 +31,25 @@ export default function FormLateral(props) {
         setDatosLateral(arrayProvisorio);
     };
 
-    function guardarForm(evento) {
-        evento.preventDefault();
-        console.log(datosLateral);
-    }
-
     function agregarCampo() {
         let arrayProvisorio = [...datosLateral];
         arrayProvisorio.push(objLateralVacio);
         setDatosLateral(arrayProvisorio);
     }
 
+    function eliminarCampo(i) {
+        let arrayProvisorio = [...datosLateral];
+        arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+        setDatosLateral(arrayProvisorio);
+    }
+
     return (
-        <>
+        <section>
             <h3>Datos de la barra lateral</h3>
-            <Form className="card2" onSubmit={guardarForm}>
-                <Button onClick={agregarCampo}>Agregar campo de datos</Button>
+            <Form className="card2">
                 {arrayCampos}
-                <Button type="submit" className="mt-3" color="primary" size="lg">Guardar datos</Button>
+                <Button className="mt-3" color="primary" size="lg" onClick={agregarCampo}>Agregar campo de datos</Button>
             </Form>
-        </>
+        </section>
     )
 }

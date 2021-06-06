@@ -26,11 +26,11 @@ export default function CargarDatos() {
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
 
     return (
-        <div>
+        <div className="card2">
             <h2>Cargar datos de CV</h2>
             <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-            <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
             <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
+            <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
             <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} />
         </div>
     )
