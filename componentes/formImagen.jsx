@@ -15,7 +15,7 @@ export default function FormImagen(props) {
     return (
         <>
             <h3>Foto de CV</h3>
-            <Form className="card" onSubmit={guardarForm}>
+            <Form className="card2" onSubmit={guardarForm}>
                 <FormGroup>
                     <Label>
                         Foto de CV

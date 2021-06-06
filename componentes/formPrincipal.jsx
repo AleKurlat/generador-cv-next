@@ -15,7 +15,7 @@ export default function FormPrincipal(props) {
     return (
         <>
             <h3>Datos del cuerpo principal</h3>
-            <Form className="card" onSubmit={guardarForm}>
+            <Form className="card2" onSubmit={guardarForm}>
                 <FormGroup>
                     <Label>
                         Apellido y nombre

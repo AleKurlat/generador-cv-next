@@ -4,7 +4,7 @@ export default function Principal() {
 
     const arrayMapeado = arrayApartados.map(apartado => {
         return (
-            <div className="card" key={apartado.id}>
+            <div className="card2" key={apartado.id}>
                 <h2>{apartado.titulo}</h2>
                 <div>
                     <h3>{apartado.subtitulo}</h3>

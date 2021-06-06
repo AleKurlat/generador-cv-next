@@ -52,7 +52,7 @@ img{
     flex-grow:1;
 }
 
-.card h2 {
+.card2 h2 {
     background-color: #ad98c3;
     padding:8px;
     border-radius: 7px;
@@ -70,16 +70,16 @@ h2, h3 {
 
 img {border-radius: 7px;}
 
-.card {
+.card2 {
     padding: 20px;
     border: 1px solid lightgray;
     margin-bottom: 20px; 
     border-radius: 7px;
-    padding-bottom: 4px;
+    padding-bottom: 15px;
     padding-top: 15px;
 }
 
-.card > div {
+.card2 > div {
     padding:5px;
     padding-bottom: 0;
 }
@@ -91,4 +91,12 @@ img {border-radius: 7px;}
 
 .barra-lateral p, .barra-lateral h4 {
     font-size:larger;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+.textoLateral> div {
+    margin-bottom: 8px;
 }

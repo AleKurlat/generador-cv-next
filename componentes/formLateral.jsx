@@ -44,7 +44,7 @@ export default function FormLateral(props) {
     return (
         <>
             <h3>Datos de la barra lateral</h3>
-            <Form className="card" onSubmit={guardarForm}>
+            <Form className="card2" onSubmit={guardarForm}>
                 <Button onClick={agregarCampo}>Agregar campo de datos</Button>
                 {arrayCampos}
                 <Button type="submit" className="mt-3" color="primary" size="lg">Guardar datos</Button>
