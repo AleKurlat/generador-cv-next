@@ -16,6 +16,20 @@ export default function FormPrincipal(props) {
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="subtitulo" value={datosPrincipal[i].subtitulo}>
                     </Input>
                 </FormGroup>
+                {datosPrincipal[i].items.map((item, j) => {
+                    return (
+                        <div className="card" key={i + "+" + j}>
+                            <FormGroup>
+                                <Label>Encabezado del párrafo</Label>
+                                <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} ></Input>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>Párrafo</Label>
+                                <Input type="text" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }}></Input>
+                            </FormGroup>
+                        </div>
+                    )
+                })}
                 <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar campo</Button>
             </div>
         )
@@ -24,6 +38,12 @@ export default function FormPrincipal(props) {
     function handler(evento, i) {
         let arrayProvisorio = [...datosPrincipal];
         arrayProvisorio[i] = { ...arrayProvisorio[i], [evento.target.name]: evento.target.value }
+        setDatosPrincipal(arrayProvisorio);
+    };
+
+    function handlerItem(evento, i, j) {
+        let arrayProvisorio = [...datosPrincipal];
+        arrayProvisorio[i].items[j] = { ...arrayProvisorio[i].items[j], [evento.target.name]: evento.target.value }
         setDatosPrincipal(arrayProvisorio);
     };
 
