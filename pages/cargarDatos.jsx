@@ -17,9 +17,19 @@ export default function CargarDatos() {
         valorItem: ""
     }
 
-    const lateralVacio = [objLateralVacio];
+    const itemPrincipalVacio = {
+        encabezadoP: "",
+        parrafo: ""
+    }
 
-    const principalVacio = {}
+    const objPrincipalVacio = {
+        titulo: "",
+        subtitulo: "",
+        items: [itemPrincipalVacio]
+    }
+
+    const lateralVacio = [objLateralVacio];
+    const principalVacio = [objPrincipalVacio];
 
     const [datosHeader, setDatosHeader] = useState(headerVacio);
     const [urlImagen, setUrlImagen] = useState("");
@@ -39,7 +49,7 @@ export default function CargarDatos() {
             <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
             <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
             <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
-            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} />
+            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} />
             <Button onClick={mostrarDatos} color="primary" size="lg">Mostrar datos</Button>
         </div>
     )
