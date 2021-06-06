@@ -7,17 +7,13 @@ export default function FormPrincipal(props) {
         return (
             <div key={i} className="card2">
                 <FormGroup>
-                    <Label>
-                        Tipo de dato (ej: teléfono, mail, etc.)
-            </Label>
-                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="nombreItem" value={datosPrincipal[i].nombreItem}>
+                    <Label>Titulo del apartado</Label>
+                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo}>
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Label>
-                        Valor del dato (ej: "123@gmail.com", "0000-0000")
-            </Label>
-                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="valorItem" value={datosPrincipal[i].valorItem}>
+                    <Label>Subtitulo del apartado</Label>
+                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="subtitulo" value={datosPrincipal[i].subtitulo}>
                     </Input>
                 </FormGroup>
                 <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar campo</Button>
@@ -33,7 +29,7 @@ export default function FormPrincipal(props) {
 
     function agregarCampo() {
         let arrayProvisorio = [...datosPrincipal];
-        arrayProvisorio.push(objLateralVacio);
+        arrayProvisorio.push(objPrincipalVacio);
         setDatosPrincipal(arrayProvisorio);
     }
 
