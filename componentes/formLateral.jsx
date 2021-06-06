@@ -48,7 +48,7 @@ export default function FormLateral(props) {
             <h3>Datos de la barra lateral</h3>
             <Form className="card2">
                 {arrayCampos}
-                <Button className="mt-3" color="primary" size="lg" onClick={agregarCampo}>Agregar campo de datos</Button>
+                <Button className="mt-3" color="primary" onClick={agregarCampo}>Agregar campo de datos</Button>
             </Form>
         </section>
     )
