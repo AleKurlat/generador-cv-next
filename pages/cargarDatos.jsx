@@ -49,7 +49,7 @@ export default function CargarDatos() {
             <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
             <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
             <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
-            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} />
+            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
             <Button onClick={mostrarDatos} color="primary" size="lg">Mostrar datos</Button>
         </div>
     )
