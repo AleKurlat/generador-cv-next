@@ -27,10 +27,11 @@ export default function FormPrincipal(props) {
                                 <Label>Párrafo</Label>
                                 <Input type="text" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }}></Input>
                             </FormGroup>
+                            <Button>Agregar párrafo</Button>
                         </div>
                     )
                 })}
-                <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar campo</Button>
+                <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar apartado</Button>
             </div>
         )
     });
@@ -64,7 +65,7 @@ export default function FormPrincipal(props) {
             <h3>Datos del cuerpo principal</h3>
             <Form className="card2">
                 {arrayCampos}
-                <Button className="mt-3" color="primary" onClick={agregarCampo}>Agregar campo de datos</Button>
+                <Button className="mt-3" color="primary" onClick={agregarCampo}>Agregar apartado</Button>
             </Form>
         </section>
     )
