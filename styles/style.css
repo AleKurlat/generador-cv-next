@@ -47,7 +47,8 @@ body{
 .contenedorImagen {
     max-width: 90%; 
     margin:auto; 
-    display: block
+    display: block;
+    margin-bottom: 5px;
 }
 
 img{
@@ -65,6 +66,7 @@ img{
     background-color: #ad98c3;
     padding:8px;
     border-radius: 7px;
+    margin-bottom: 1px;
 }
 
 h1 {
@@ -104,8 +106,12 @@ img {border-radius: 7px;}
     font-size:larger;
 }
 
+.cuadroPrincipal p {
+    margin-bottom: 6px;
+}
+
 .cuadroPrincipal p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0!important;
 }
 
 .textoLateral> div {
