@@ -15,7 +15,7 @@ export default function FormImagen(props) {
                         <strong>URL de foto de CV</strong>
                         <div>Debe ser una dirección pública que incluya el formato del archivo (ej. "www.imagen.jpg")</div>
                     </Label>
-                    <Input type="text" onChange={handler} value={urlImagen}>
+                    <Input type="text" onChange={handler} value={urlImagen} placeholder="Escriba aquí">
                     </Input>
                 </FormGroup>
             </Form>

@@ -7,31 +7,31 @@ export default function FormPrincipal(props) {
         return (
             <div key={i} className="card2">
                 <FormGroup>
-                    <Label>Titulo del apartado</Label>
-                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo}>
+                    <Label><h2>Titulo del apartado</h2></Label>
+                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo} placeholder="Escriba aquí">
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Label>Subtitulo del apartado</Label>
-                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="subtitulo" value={datosPrincipal[i].subtitulo}>
+                    <Label><h3>Subtitulo del apartado</h3></Label>
+                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="subtitulo" value={datosPrincipal[i].subtitulo} placeholder="Escriba aquí">
                     </Input>
                 </FormGroup>
                 {datosPrincipal[i].items.map((item, j) => {
                     return (
-                        <div className="card2" key={i + "+" + j}>
+                        <div className="parrafo" key={i + "+" + j}>
                             <FormGroup>
-                                <Label>Encabezado del párrafo</Label>
-                                <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} ></Input>
+                                <Label><strong>Encabezado del párrafo</strong></Label>
+                                <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label>Párrafo</Label>
-                                <Input type="text" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }}></Input>
+                                <Input type="textarea" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
                             </FormGroup>
                             <Button color="danger" onClick={() => { eliminarParrafo(i, j) }}>Eliminar parrafo</Button>
                         </div>
                     )
                 })}
-                <Button onClick={() => { agregarParrafo(i) }}>Agregar párrafo</Button>
+                <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar párrafo</Button>
                 <Button color="danger" onClick={() => { eliminarApartado(i) }}>Eliminar apartado</Button>
             </div>
         )

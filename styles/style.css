@@ -112,7 +112,6 @@ img {border-radius: 7px;}
 section{
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
 }
 
 form{
@@ -123,9 +122,6 @@ form{
 .pagForm {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin: 20px;
-    text-align: center;
 }
 
 .contenedorForm {
@@ -137,7 +133,29 @@ form{
     margin:10px;
 }
 
-.form-group {
-    max-width: fit-content;
-    min-width:250px;
+.btn{
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
+
+.parrafo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top:10px;
+}
+
+label{
+    display: block!important;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 800px) {
+.contenedor{
+    min-width: 80%;
+}
+  }

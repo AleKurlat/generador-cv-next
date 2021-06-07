@@ -10,17 +10,13 @@ export default function FormHeader(props) {
     return (
         <Form className="header">
             <FormGroup>
-                <Label>
-                    Apellido y nombre
-                    </Label>
-                <Input type="text" onChange={handler} name="nombre" value={datosHeader.nombre}>
+                <Label><h3>Apellido y nombre</h3></Label>
+                <Input type="text" onChange={handler} name="nombre" value={datosHeader.nombre} placeholder="Escriba aquí">
                 </Input>
             </FormGroup>
             <FormGroup>
-                <Label>
-                    Descripción
-                    </Label>
-                <Input type="text" onChange={handler} name="descripcion" value={datosHeader.descripcion}>
+                <Label><strong>Descripción</strong></Label>
+                <Input type="text" onChange={handler} name="descripcion" value={datosHeader.descripcion} placeholder="Escriba aquí">
                 </Input>
             </FormGroup>
         </Form>
