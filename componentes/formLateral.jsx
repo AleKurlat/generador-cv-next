@@ -8,16 +8,16 @@ export default function FormLateral(props) {
             <div key={i} className="parrafo">
                 <FormGroup>
                     <Label>
-                        <strong>Tipo de dato </strong>
-                        <div>Ej: "teléfono", "mail", etc.</div>
+                        <h4>Tipo de dato </h4>
+                        <div className="mb-2">Ej: "teléfono", "mail", etc.</div>
                     </Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="nombreItem" value={datosLateral[i].nombreItem} placeholder="Escriba aquí">
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label>
-                        <strong>Valor del dato</strong>
-                        <div>Ej: "123@gmail.com", "0000-0000"</div>
+                        <h4>Valor del dato</h4>
+                        <div className="mb-2">Ej: "123@gmail.com", "0000-0000"</div>
                     </Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="valorItem" value={datosLateral[i].valorItem} placeholder="Escriba aquí">
                     </Input>
@@ -49,7 +49,7 @@ export default function FormLateral(props) {
         <section>
             <Form>
                 {arrayCampos}
-                <Button className="mt-3" color="primary" onClick={agregarCampo}>Agregar campo de datos</Button>
+                <Button color="primary" onClick={agregarCampo}>Agregar campo de datos</Button>
             </Form>
         </section>
     )

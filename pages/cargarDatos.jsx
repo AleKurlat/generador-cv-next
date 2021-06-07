@@ -54,8 +54,8 @@ export default function CargarDatos() {
                     </div>
                     <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                 </div>
+                <Button onClick={mostrarDatos} color="info" size="lg">Mostrar datos</Button>
             </div>
-            <Button onClick={mostrarDatos} color="primary" size="lg">Mostrar datos</Button>
         </div>
     )
 }
