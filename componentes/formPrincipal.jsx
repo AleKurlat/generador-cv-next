@@ -74,9 +74,8 @@ export default function FormPrincipal(props) {
     }
 
     return (
-        <section>
-            <h3>Datos del cuerpo principal</h3>
-            <Form className="card2">
+        <section className="cuadroPrincipal">
+            <Form>
                 {arrayCampos}
                 <Button className="mt-3" color="primary" onClick={agregarApartado}>Agregar apartado</Button>
             </Form>

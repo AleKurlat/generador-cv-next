@@ -9,11 +9,11 @@ export default function FormImagen(props) {
 
     return (
         <section>
-            <h3>Foto de CV</h3>
-            <Form className="card2">
+            <Form>
                 <FormGroup>
                     <Label>
-                        Foto de CV
+                        <strong>URL de foto de CV</strong>
+                        <div>Debe ser una dirección pública que incluya el formato del archivo (ej. "www.imagen.jpg")</div>
                     </Label>
                     <Input type="text" onChange={handler} value={urlImagen}>
                     </Input>

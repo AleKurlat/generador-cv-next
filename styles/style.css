@@ -4,6 +4,12 @@ body{
     font-family: open sans;
 }
 
+#__next {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .header{
     display: flex;
     flex-direction: column;
@@ -12,6 +18,7 @@ body{
     background-color: #6286b3;
     border-radius: 7px;
     padding:10px;
+    align-items: center;
 }
 
 .contenedor{
@@ -94,7 +101,7 @@ img {border-radius: 7px;}
     font-size:larger;
 }
 
-p:last-child {
+.cuadroPrincipal p:last-child {
     margin-bottom: 0;
 }
 
@@ -105,9 +112,32 @@ p:last-child {
 section{
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 form{
     display: flex;
     flex-direction: column;
+}
+
+.pagForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px;
+    text-align: center;
+}
+
+.contenedorForm {
+    display: flex;
+    justify-content: space-around;
+}
+
+.contenedorForm section {
+    margin:10px;
+}
+
+.form-group {
+    max-width: fit-content;
+    min-width:250px;
 }

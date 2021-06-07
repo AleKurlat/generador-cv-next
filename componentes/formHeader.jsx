@@ -8,24 +8,21 @@ export default function FormHeader(props) {
     };
 
     return (
-        <section>
-            <h3>Datos de la cabecera</h3>
-            <Form className="card2">
-                <FormGroup>
-                    <Label>
-                        Apellido y nombre
+        <Form className="header">
+            <FormGroup>
+                <Label>
+                    Apellido y nombre
                     </Label>
-                    <Input type="text" onChange={handler} name="nombre" value={datosHeader.nombre}>
-                    </Input>
-                </FormGroup>
-                <FormGroup>
-                    <Label>
-                        Descripción
+                <Input type="text" onChange={handler} name="nombre" value={datosHeader.nombre}>
+                </Input>
+            </FormGroup>
+            <FormGroup>
+                <Label>
+                    Descripción
                     </Label>
-                    <Input type="text" onChange={handler} name="descripcion" value={datosHeader.descripcion}>
-                    </Input>
-                </FormGroup>
-            </Form>
-        </section>
+                <Input type="text" onChange={handler} name="descripcion" value={datosHeader.descripcion}>
+                </Input>
+            </FormGroup>
+        </Form>
     )
 }

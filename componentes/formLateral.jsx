@@ -8,15 +8,17 @@ export default function FormLateral(props) {
             <div key={i} className="card2">
                 <FormGroup>
                     <Label>
-                        Tipo de dato (ej: teléfono, mail, etc.)
-            </Label>
+                        <strong>Tipo de dato </strong>
+                        <div>Ej: "teléfono", "mail", etc.</div>
+                    </Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="nombreItem" value={datosLateral[i].nombreItem}>
                     </Input>
                 </FormGroup>
                 <FormGroup>
                     <Label>
-                        Valor del dato (ej: "123@gmail.com", "0000-0000")
-            </Label>
+                        <strong>Valor del dato</strong>
+                        <div>Ej: "123@gmail.com", "0000-0000"</div>
+                    </Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="valorItem" value={datosLateral[i].valorItem}>
                     </Input>
                 </FormGroup>
@@ -45,8 +47,7 @@ export default function FormLateral(props) {
 
     return (
         <section>
-            <h3>Datos de la barra lateral</h3>
-            <Form className="card2">
+            <Form>
                 {arrayCampos}
                 <Button className="mt-3" color="primary" onClick={agregarCampo}>Agregar campo de datos</Button>
             </Form>

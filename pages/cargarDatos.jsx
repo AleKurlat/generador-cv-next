@@ -44,12 +44,17 @@ export default function CargarDatos() {
     }
 
     return (
-        <div className="card2">
-            <h2>Cargar datos de CV</h2>
-            <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-            <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
-            <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
-            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
+        <div className="pagForm">
+            <div className="contenedor">
+                <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
+                <div className="cuerpo">
+                    <div className="barra-lateral">
+                        <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
+                        <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+                    </div>
+                    <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
+                </div>
+            </div>
             <Button onClick={mostrarDatos} color="primary" size="lg">Mostrar datos</Button>
         </div>
     )
