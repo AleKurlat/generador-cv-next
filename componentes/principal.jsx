@@ -1,8 +1,6 @@
-import { arrayApartados } from "../librerias/lib.jsx";
-
-export default function Principal() {
-
-    const arrayMapeado = arrayApartados.map(apartado => {
+export default function Principal(props) {
+    const { datosPrincipal } = props;
+    const arrayMapeado = datosPrincipal.map(apartado => {
         return (
             <div className="card2" key={apartado.id}>
                 <h2>{apartado.titulo}</h2>

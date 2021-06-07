@@ -4,43 +4,18 @@ import FormPrincipal from "../componentes/formPrincipal";
 import FormImagen from "../componentes/formImagen";
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
+import { useRouter } from 'next/router'
 
-export default function CargarDatos() {
-    const headerVacio = {
-        nombre: "",
-        descripcion: ""
-    }
+export default function CargarDatos(props) {
+    const router = useRouter();
+    const { datosHeader, setDatosHeader, urlImagen, setUrlImagen, datosLateral, setDatosLateral, datosPrincipal, setDatosPrincipal, objPrincipalVacio, objLateralVacio, itemPrincipalVacio } = props;
 
-    const objLateralVacio =
-    {
-        nombreItem: "",
-        valorItem: ""
-    }
-
-    const itemPrincipalVacio = {
-        encabezadoP: "",
-        parrafo: ""
-    }
-
-    const objPrincipalVacio = {
-        titulo: "",
-        subtitulo: "",
-        items: [itemPrincipalVacio]
-    }
-
-    const lateralVacio = [objLateralVacio];
-    const principalVacio = [objPrincipalVacio];
-
-    const [datosHeader, setDatosHeader] = useState(headerVacio);
-    const [urlImagen, setUrlImagen] = useState("");
-    const [datosLateral, setDatosLateral] = useState(lateralVacio);
-    const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
-
-    function mostrarDatos() {
+    function generarCV() {
         console.log(datosHeader);
         console.log(urlImagen);
         console.log(datosLateral);
         console.log(datosPrincipal);
+        router.push("/");
     }
 
     return (
@@ -54,7 +29,7 @@ export default function CargarDatos() {
                     </div>
                     <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                 </div>
-                <Button onClick={mostrarDatos} color="info" size="lg">Mostrar datos</Button>
+                <Button onClick={generarCV} color="info" size="lg">Generar CV</Button>
             </div>
         </div>
     )

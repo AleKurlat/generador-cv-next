@@ -1,11 +1,11 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css'
 import Header from "../componentes/header";
 import Lateral from "../componentes/lateral";
 import Principal from "../componentes/principal";
 
-export default function Home() {
+export default function Home(props) {
+  const { datosHeader, urlImagen, datosLateral, datosPrincipal } = props;
+
   return (
     <div className="contenedor">
       <Head>
@@ -13,10 +13,10 @@ export default function Home() {
         <meta name="description" content="App para generar tu Curriculum Vitae" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header datosHeader={datosHeader} />
       <div className="cuerpo">
-        <Lateral />
-        <Principal />
+        <Lateral datosLateral={datosLateral} urlImagen={urlImagen} />
+        <Principal datosPrincipal={datosPrincipal} />
       </div>
     </div>
   )

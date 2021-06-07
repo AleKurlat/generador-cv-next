@@ -1,7 +1,6 @@
-import { arrayLateral, urlImagen } from "../librerias/lib.jsx";
-
-export default function Lateral() {
-    const arrayMapeado = arrayLateral.map(item => {
+export default function Lateral(props) {
+    const { datosLateral, urlImagen } = props;
+    const arrayMapeado = datosLateral.map(item => {
         return (
             <div key={item.id}>
                 <h4>{item.nombreItem}</h4>
