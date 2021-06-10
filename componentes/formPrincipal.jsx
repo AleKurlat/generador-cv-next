@@ -77,7 +77,7 @@ export default function FormPrincipal(props) {
         <section className="cuadroPrincipal">
             <Form>
                 {arrayCampos}
-                <Button color="primary" onClick={agregarApartado} style={{ "margin-bottom": "20px" }}>Agregar apartado</Button>
+                <Button color="primary" onClick={agregarApartado} style={{ "marginBottom": "20px" }}>Agregar apartado</Button>
             </Form>
         </section>
     )
