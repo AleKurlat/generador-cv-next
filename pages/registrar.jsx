@@ -49,7 +49,7 @@ export default function Registro(props) {
     if (statePreLoader) { zonaPreLoader = preLoader };
 
     return (
-        <Layout>
+        <Layout {...props}>
             <Form className="card2 align-items-stretch text-start" onSubmit={guardarForm}>
                 <h3>Registrar nuevo usuario</h3>
                 {zonaPreLoader}

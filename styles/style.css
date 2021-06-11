@@ -175,6 +175,17 @@ label{
     margin-bottom: 10px;
 }
 
+.barraUsuario{
+    background-color: #f7f9fa;
+    border-radius: 10px;
+    border: 1px solid #ebeef0;
+    display: flex;
+    margin-bottom: 7px;
+    padding: 10px 30px;
+    justify-content: center;
+    align-items: baseline;
+}
+
 @media (min-width: 800px) {
 .contenedor{
     min-width: 80%;

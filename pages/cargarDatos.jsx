@@ -32,10 +32,12 @@ export default function CargarDatos(props) {
             const urlAPI = hostAPI + "/cvs/" + id;
             const loguear = await axios.get(urlAPI, autorizacion);
             if (loguear && loguear.status === 200) {
-                setDatosHeader(loguear.data.datosHeader);
-                setDatosLateral(loguear.data.datosLateral);
-                setDatosPrincipal(loguear.data.datosPrincipal);
-                setUrlImagen(loguear.data.urlImagen);
+                if (loguear.data) {
+                    setDatosHeader(loguear.data.datosHeader);
+                    setDatosLateral(loguear.data.datosLateral);
+                    setDatosPrincipal(loguear.data.datosPrincipal);
+                    setUrlImagen(loguear.data.urlImagen);
+                }
             }
         }
         catch (e) {
@@ -65,7 +67,7 @@ export default function CargarDatos(props) {
 
     if (token) {
         return (
-            <Layout>
+            <Layout {...props}>
                 <div className="pagForm">
                     <div className="contenedor">
                         <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />

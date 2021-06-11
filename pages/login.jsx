@@ -52,7 +52,7 @@ export default function AdminLogin(props) {
     if (statePreLoader) { zonaPreLoader = preLoader };
 
     return (
-        <Layout>
+        <Layout {...props}>
             <div>
                 <Form className="align-items-stretch text-start card2" onSubmit={guardarForm}>
                     <h3>Ingresar usuario</h3>
