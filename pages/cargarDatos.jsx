@@ -7,6 +7,8 @@ import { Button } from 'reactstrap';
 import { useRouter } from 'next/router';
 import axios from "axios";
 import { preLoader, responderError, hostAPI, obtenerDatosToken } from "../librerias/lib.jsx";
+import Link from 'next/link';
+import Layout from '../componentes/layout.jsx';
 
 export default function CargarDatos(props) {
     const router = useRouter();
@@ -61,25 +63,27 @@ export default function CargarDatos(props) {
         if (token) { traerCV() }
     }, [token]);
 
-
-    return (
-        <div className="pagForm">
-            <div className="contenedor">
-
-                <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-                <div className="cuerpo">
-                    <div className="barra-lateral">
-                        <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
-                        <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+    if (token) {
+        return (
+            <Layout>
+                <div className="pagForm">
+                    <div className="contenedor">
+                        <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
+                        <div className="cuerpo">
+                            <div className="barra-lateral">
+                                <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
+                                <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+                            </div>
+                            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
+                        </div>
+                        <Button onClick={guardarCV} color="info" size="lg">Guardar datos y generar CV</Button>
                     </div>
-                    <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                 </div>
-                <Button onClick={guardarCV} color="info" size="lg">Guardar datos y generar CV</Button>
-                <div className="alerta">
-                    App web programada en React / Next.JS
-                    <a href="https://github.com/AleKurlat" style={{ "textDecoration": "none" }}>https://github.com/AleKurlat</a>
-                </div>
-            </div>
-        </div>
-    )
+            </Layout>
+        )
+    } else {
+        return (
+            <div>Por favor <Link href="/login">ingrese con su usuario</Link></div>
+        );
+    }
 }

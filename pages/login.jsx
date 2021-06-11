@@ -5,6 +5,7 @@ import { Form, FormGroup, Input, Button, Label } from 'reactstrap';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from "axios";
+import Layout from '../componentes/layout.jsx';
 
 export default function AdminLogin(props) {
 
@@ -51,20 +52,22 @@ export default function AdminLogin(props) {
     if (statePreLoader) { zonaPreLoader = preLoader };
 
     return (
-        <div>
-            <h2>Ingresar usuario y clave</h2>
-            <Form className="align-items-stretch text-start card2" onSubmit={guardarForm}>
-                {zonaPreLoader}
-                <FormGroup>
-                    <Label>Email</Label>
-                    <Input className="my-3" type="text" onChange={cambiarValorInput} value={objLogin.email} name="email" required />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Contraseña</Label>
-                    <Input className="my-3" type="password" onChange={cambiarValorInput} value={objLogin.clave} name="clave" required />
-                </FormGroup>
-                <Button type="submit" className="mt-3" color="primary" size="lg">Ingresar</Button>
-            </Form>
-        </div>
+        <Layout>
+            <div>
+                <Form className="align-items-stretch text-start card2" onSubmit={guardarForm}>
+                    <h3>Ingresar usuario</h3>
+                    {zonaPreLoader}
+                    <FormGroup>
+                        <Label>Email</Label>
+                        <Input className="my-3" type="text" onChange={cambiarValorInput} value={objLogin.email} name="email" required />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>Contraseña</Label>
+                        <Input className="my-3" type="password" onChange={cambiarValorInput} value={objLogin.clave} name="clave" required />
+                    </FormGroup>
+                    <Button type="submit" className="mt-3" color="primary" size="lg">Ingresar</Button>
+                </Form>
+            </div>
+        </Layout>
     )
 }
