@@ -4,7 +4,9 @@ import FormPrincipal from "../componentes/formPrincipal";
 import FormImagen from "../componentes/formImagen";
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import axios from "axios";
+import { preLoader, responderError, hostAPI } from "../librerias/lib.jsx";
 
 export default function CargarDatos(props) {
     const router = useRouter();
@@ -20,7 +22,11 @@ export default function CargarDatos(props) {
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
 
     function generarCV() {
-        router.push("/");
+        console.log(datosHeader);
+        console.log(datosPrincipal);
+        console.log(datosLateral);
+        console.log(urlImagen);
+        //router.push("/");
     }
 
     return (

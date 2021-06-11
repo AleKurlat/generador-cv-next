@@ -10,7 +10,6 @@ if (process.env.NODE_ENV === 'production') {
 export const preLoader =
     <div className="preLoader"><img src="/loading.svg" alt="esperando" style={{ "marginLeft": "auto", "marginRight": "auto" }}></img></div>;
 
-
 export function responderError(e) {
     if (e.response) {
         if (e.response.status === 403) {
@@ -29,6 +28,12 @@ export function responderError(e) {
         swal("Error en la solicitud al servidor");
         return false;
     }
+}
+
+export function obtenerDatosToken(token) {
+    const base64Url = token.split('.')[1];
+    const base64Decode = Buffer.from(base64Url, "base64");
+    return JSON.parse(base64Decode);
 }
 
 export const dataHeader = {
