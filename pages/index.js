@@ -22,7 +22,7 @@ export default function Home(props) {
     const [urlImagen, setUrlImagen] = useState("");
     const [datosLateral, setDatosLateral] = useState(lateralVacio);
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
-    const { token } = props;
+    const { token, loading } = props;
     const autorizacion = { headers: { Authorization: token } };
 
     async function traerCV() {
@@ -65,27 +65,30 @@ export default function Home(props) {
         if (token) { traerCV() }
     }, [token]);
 
-    if (token) {
-        return (
-            <Layout {...props}>
-                <div className="pagForm">
-                    <div className="contenedor">
-                        <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-                        <div className="cuerpo">
-                            <div className="barra-lateral">
-                                <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
-                                <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+    if (loading === false) {
+        if (token) {
+            return (
+                <Layout {...props}>
+                    <div className="pagForm">
+                        <div className="contenedor">
+                            <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
+                            <div className="cuerpo">
+                                <div className="barra-lateral">
+                                    <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
+                                    <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+                                </div>
+                                <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                             </div>
-                            <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
+                            <Button onClick={guardarCV} color="info" size="lg">Guardar datos y generar CV</Button>
                         </div>
-                        <Button onClick={guardarCV} color="info" size="lg">Guardar datos y generar CV</Button>
                     </div>
-                </div>
-            </Layout>
-        )
+                </Layout>
+            )
+        } else {
+            router.push("/login");
+            return "Redireccionando a login...";
+        }
     } else {
-        return (
-            <div>Por favor <Link href="/login">ingrese con su usuario</Link></div>
-        );
+        return (<div>Cargando...</div>);
     }
 }

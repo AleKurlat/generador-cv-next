@@ -5,13 +5,15 @@ import React, { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
   const [token, setToken] = useState();
-  const pasarProps = { token, setToken }
+  const [loading, setLoading] = useState(true);
+  const pasarProps = { token, setToken, loading }
 
   function chequearToken() {
     if (typeof window !== "undefined") {
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
       }
+      setLoading(false);
     }
   }
 

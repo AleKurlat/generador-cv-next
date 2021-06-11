@@ -44,7 +44,7 @@ export default function AdminLogin(props) {
             if (typeof window !== "undefined") {
                 localStorage.setItem("token", respuesta);
             }
-            router.push("/cargarDatos");
+            router.push("/");
         }
     }
 
