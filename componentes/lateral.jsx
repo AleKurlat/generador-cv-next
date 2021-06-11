@@ -1,8 +1,8 @@
 export default function Lateral(props) {
     const { datosLateral, urlImagen } = props;
-    const arrayMapeado = datosLateral.map(item => {
+    const arrayMapeado = datosLateral.map((item, i) => {
         return (
-            <div key={item.id}>
+            <div key={i}>
                 <h4>{item.nombreItem}</h4>
                 <p>{item.valorItem}</p>
             </div>

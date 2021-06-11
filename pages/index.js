@@ -32,6 +32,7 @@ export default function Home(props) {
   }, [token]);
 
   if (datosCV) {
+    const { datosHeader, datosLateral, datosPrincipal, urlImagen } = datosCV;
     return (
       <div className="contenedor">
         <Head>
@@ -47,7 +48,7 @@ export default function Home(props) {
       </div>
     )
   } else {
-    return ("esperando datos")
+    return ("esperando datos");
   }
 
 }

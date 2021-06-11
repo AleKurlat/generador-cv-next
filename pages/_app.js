@@ -11,7 +11,6 @@ function MyApp({ Component, pageProps }) {
     if (typeof window !== "undefined") {
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
-        console.log("se recuperó token almacenado");
       }
     }
   }
