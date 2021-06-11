@@ -41,7 +41,7 @@ export default function Registro(props) {
         preLoaderOn(false);
         if (resultadoOp && resultadoOp !== 403) {
             swal("Usuario guardado correctamente");
-            router.push("/");
+            router.push("/login");
         }
     }
 
@@ -51,7 +51,7 @@ export default function Registro(props) {
     return (
         <Layout>
             <Form className="card2 align-items-stretch text-start" onSubmit={guardarForm}>
-                <h3>Registrar usuario</h3>
+                <h3>Registrar nuevo usuario</h3>
                 {zonaPreLoader}
                 <FormGroup>
                     <Label>Email</Label>
@@ -62,7 +62,7 @@ export default function Registro(props) {
                     <Input className="my-3" type="password" onChange={cambiarValorInput} value={objRegistro.clave} name="clave" required />
                 </FormGroup>
                 <Button type="submit" className="mt-3" color="primary" size="lg">Guardar usuario</Button>
-                <Link href="/#menuNav" passHref ><Button className="mt-3" color="primary" size="lg">Volver al inicio</Button></Link>
+                <Link href="/login" passHref ><Button className="mt-3" color="primary" size="lg">Volver al login</Button></Link>
             </Form>
         </Layout>
     )

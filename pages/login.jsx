@@ -66,6 +66,7 @@ export default function AdminLogin(props) {
                         <Input className="my-3" type="password" onChange={cambiarValorInput} value={objLogin.clave} name="clave" required />
                     </FormGroup>
                     <Button type="submit" className="mt-3" color="primary" size="lg">Ingresar</Button>
+                    <Link href="/registrar" passHref><Button className="mt-3" color="primary" size="lg">Registrar nuevo usuario</Button></Link>
                 </Form>
             </div>
         </Layout>
