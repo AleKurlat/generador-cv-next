@@ -23,7 +23,7 @@ export default function Layout(props) {
 
     return (
         <div>
-            <div><h1 className="text-center mb-3">Armá tu CV online</h1></div>
+            <div><h1 className="text-center mb-3">Creá tu CV online</h1></div>
             <div>{barraUsuario}</div>
             {props.children}
             <div className="alerta">
