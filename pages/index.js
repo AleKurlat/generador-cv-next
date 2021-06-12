@@ -23,6 +23,7 @@ export default function Home(props) {
     const [datosLateral, setDatosLateral] = useState(lateralVacio);
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
     const [statePreLoader, preLoaderOn] = useState(false);
+    const [CVCargado, setCVCargado] = useState(false);
     const { token, loading } = props;
     const autorizacion = { headers: { Authorization: token } };
 
@@ -38,6 +39,7 @@ export default function Home(props) {
                     setDatosLateral(loguear.data.datosLateral);
                     setDatosPrincipal(loguear.data.datosPrincipal);
                     setUrlImagen(loguear.data.urlImagen);
+                    setCVCargado(true);
                 }
             }
         }
@@ -52,9 +54,7 @@ export default function Home(props) {
             const id = datosToken.user_id;
             const urlAPI = hostAPI + "/cvs/" + id;
             const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
-            preLoaderOn(true);
             const loguear = await axios.put(urlAPI, objeto, autorizacion);
-            preLoaderOn(false);
             if (loguear && loguear.status === 200) {
                 router.push("/verCV");
             }
@@ -65,7 +65,11 @@ export default function Home(props) {
     }
 
     useEffect(() => {
-        if (token) { traerCV() }
+        if (token) {
+            preLoaderOn(true);
+            traerCV();
+            preLoaderOn(false);
+        }
     }, [token]);
 
     let zonaPreLoader;
@@ -73,29 +77,59 @@ export default function Home(props) {
 
     if (loading === false) {
         if (token) {
+            if (CVCargado) {
+                return (
+                    <Layout {...props}>
+                        <div className="pagForm">
+                            <div className="contenedor">
+                                <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
+                                <div className="cuerpo">
+                                    <div className="barra-lateral">
+                                        <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
+                                        <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+                                    </div>
+                                    <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
+                                </div>
+                                <Button onClick={() => { preLoaderOn(true); guardarCV(); preLoaderOn(false) }} color="info" size="lg">Guardar datos y generar CV</Button>
+                                {zonaPreLoader}
+                            </div>
+                        </div>
+                    </Layout>
+                )
+            } else {
+                return (
+                    <Layout {...props}>
+                        {zonaPreLoader}
+                        <div className="pagForm">
+                            <div className="contenedor">
+                                Esperando respuesta del servidor...
+                            </div>
+                        </div>
+                    </Layout>
+                )
+            }
+        } else {
+            router.push("/login");
             return (
                 <Layout {...props}>
+                    {zonaPreLoader}
                     <div className="pagForm">
                         <div className="contenedor">
-                            <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-                            <div className="cuerpo">
-                                <div className="barra-lateral">
-                                    <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
-                                    <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
-                                </div>
-                                <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
-                            </div>
-                            <Button onClick={guardarCV} color="info" size="lg">Guardar datos y generar CV</Button>
-                            {zonaPreLoader}
+                            Redireccionando al login...
                         </div>
                     </div>
                 </Layout>
-            )
-        } else {
-            router.push("/login");
-            return "Redireccionando a login...";
+            );
         }
     } else {
-        return (<div>Cargando...</div>);
+        return (
+            <Layout {...props}>
+                {zonaPreLoader}
+                <div className="pagForm">
+                    <div className="contenedor">
+                        Esperando datos del usuario...
+                    </div>
+                </div>
+            </Layout>);
     }
 }

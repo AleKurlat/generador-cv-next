@@ -45,10 +45,9 @@ body{
 }
 
 .contenedorImagen {
-    max-width: 90%; 
-    margin:auto; 
-    display: block;
-    margin-bottom: 5px;
+    max-width: 200px; 
+    margin-top:10px;
+    margin-bottom:20px;
 }
 
 img{
@@ -116,6 +115,9 @@ img {border-radius: 7px;}
 
 .textoLateral> div {
     margin-bottom: 8px;
+}
+
+.textoLateral {
 }
 
 section{
