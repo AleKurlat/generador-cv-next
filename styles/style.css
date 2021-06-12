@@ -45,8 +45,7 @@ body{
 }
 
 .contenedorImagen {
-    max-width: 300px;
-    min-width:200px; 
+    width: 300px;
     margin-top:10px;
     margin-bottom:20px;
 }
@@ -116,9 +115,6 @@ img {border-radius: 7px;}
 
 .textoLateral> div {
     margin-bottom: 8px;
-}
-
-.textoLateral {
 }
 
 section{
