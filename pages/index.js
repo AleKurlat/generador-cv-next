@@ -22,6 +22,7 @@ export default function Home(props) {
     const [urlImagen, setUrlImagen] = useState("");
     const [datosLateral, setDatosLateral] = useState(lateralVacio);
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
+    const [statePreLoader, preLoaderOn] = useState(false);
     const { token, loading } = props;
     const autorizacion = { headers: { Authorization: token } };
 
@@ -51,7 +52,9 @@ export default function Home(props) {
             const id = datosToken.user_id;
             const urlAPI = hostAPI + "/cvs/" + id;
             const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
+            preLoaderOn(true);
             const loguear = await axios.put(urlAPI, objeto, autorizacion);
+            preLoaderOn(false);
             if (loguear && loguear.status === 200) {
                 router.push("/verCV");
             }
@@ -64,6 +67,9 @@ export default function Home(props) {
     useEffect(() => {
         if (token) { traerCV() }
     }, [token]);
+
+    let zonaPreLoader;
+    if (statePreLoader) { zonaPreLoader = preLoader };
 
     if (loading === false) {
         if (token) {
@@ -80,6 +86,7 @@ export default function Home(props) {
                                 <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                             </div>
                             <Button onClick={guardarCV} color="info" size="lg">Guardar datos y generar CV</Button>
+                            {zonaPreLoader}
                         </div>
                     </div>
                 </Layout>

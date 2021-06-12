@@ -186,6 +186,10 @@ label{
     text-align: center;
 }
 
+.preLoader{
+    text-align: center;
+  }
+
 @media (min-width: 800px) {
 .contenedor{
     min-width: 80%;
