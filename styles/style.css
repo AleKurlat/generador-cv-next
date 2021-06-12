@@ -45,7 +45,8 @@ body{
 }
 
 .contenedorImagen {
-    max-width: 200px; 
+    max-width: 300px;
+    min-width:200px; 
     margin-top:10px;
     margin-bottom:20px;
 }
