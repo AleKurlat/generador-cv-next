@@ -1,2 +1,2 @@
-Aplicación para generar Curriculum Vitae a partir de un template pre-establecido.   
-Escrita en React / Next.js.
+Aplicación para generar Curriculum Vitae a partir de un template pre-establecido. Los datos ingresados por cada usuario se guardan en un servidor para poder recuperarlos y continuar con su edición.     
+Programada en React / Next.js.  
