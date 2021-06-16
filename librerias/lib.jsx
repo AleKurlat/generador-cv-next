@@ -2,7 +2,7 @@ export let hostAPI;
 import swal from 'sweetalert';
 
 if (process.env.NODE_ENV === 'production') {
-    hostAPI = "https://api-arma-tu-cv.glitch.me/";
+    hostAPI = "https://genera-tu-cv.vercel.app/api";
 } else {
     hostAPI = "http://localhost:3000/api";
 }
