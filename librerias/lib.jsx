@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 if (process.env.NODE_ENV === 'production') {
     hostAPI = "https://api-arma-tu-cv.glitch.me/";
 } else {
-    hostAPI = "http://localhost:3001";
+    hostAPI = "http://localhost:3000/api";
 }
 
 export const preLoader =
