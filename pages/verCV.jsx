@@ -5,12 +5,14 @@ import Principal from "../componentes/principal";
 import axios from "axios";
 import { preLoader, responderError, hostAPI, obtenerDatosToken } from "../librerias/lib.jsx";
 import React, { useState, useEffect } from 'react';
+import Layout from '../componentes/layout.jsx';
 
 export default function VerCV(props) {
   //const { datosHeader, urlImagen, datosLateral, datosPrincipal } = props;
   const { token } = props;
   const autorizacion = { headers: { Authorization: token } };
   const [datosCV, setDatosCV] = useState();
+  const [statePreLoader, preLoaderOn] = useState(false);
 
   async function traerCV() {
     try {
@@ -27,9 +29,16 @@ export default function VerCV(props) {
     }
   }
 
-  useEffect(() => {
-    if (token) { traerCV() }
+  useEffect(async () => {
+    if (token) {
+      preLoaderOn(true);
+      await traerCV();
+      preLoaderOn(false);
+    }
   }, [token]);
+
+  let zonaPreLoader;
+  if (statePreLoader) { zonaPreLoader = preLoader };
 
   if (datosCV) {
     const { datosHeader, datosLateral, datosPrincipal, urlImagen } = datosCV;
@@ -48,7 +57,15 @@ export default function VerCV(props) {
       </div>
     )
   } else {
-    return ("esperando datos");
+    return (
+      <Layout {...props}>
+        {zonaPreLoader}
+        <div className="pagForm">
+          <div className="contenedor">
+            Esperando respuesta del servidor...
+          </div>
+        </div>
+      </Layout>);
   }
 
 }
