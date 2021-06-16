@@ -35,10 +35,10 @@ export default function Home(props) {
             const loguear = await axios.get(urlAPI, autorizacion);
             if (loguear && loguear.status === 200) {
                 if (loguear.data) {
-                    setDatosHeader(loguear.data.datosHeader);
-                    setDatosLateral(loguear.data.datosLateral);
-                    setDatosPrincipal(loguear.data.datosPrincipal);
-                    setUrlImagen(loguear.data.urlImagen);
+                    if (loguear.data.datosHeader) { setDatosHeader(loguear.data.datosHeader) }
+                    if (loguear.data.datosLateral) { setDatosLateral(loguear.data.datosLateral) }
+                    if (loguear.data.datosPrincipal) { setDatosPrincipal(loguear.data.datosPrincipal) }
+                    if (loguear.data.urlImagen) { setUrlImagen(loguear.data.urlImagen); }
                     setCVCargado(true);
                 }
             }
