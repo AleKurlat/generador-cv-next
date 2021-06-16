@@ -201,6 +201,7 @@ label{
   p {
     margin-block-start: 1em!important;
     margin-block-end: 1em!important;
+    text-align: justify!important;
 }
 
 @media (min-width: 800px) {
