@@ -96,7 +96,6 @@ export default function Home(props) {
                     </Layout>
                 )
             } else {
-                console.log(statePreLoader)
                 return (
                     <Layout {...props}>
                         {zonaPreLoader}
