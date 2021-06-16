@@ -5,7 +5,7 @@ export function auth(handler) {
         try {
             let token = req.headers["authorization"];
             if (!token) {
-                throw new Error("no estas logueado");
+                throw new Error("Para realizar esta acción es necesario ingresar con un usuario");
             }
 
             token = token.replace("Bearer ", "");
@@ -18,8 +18,8 @@ export function auth(handler) {
 
             const base64Url = token.split('.')[1];
             const base64Decode = Buffer.from(base64Url, "base64");
-            res.locals.datosToken = JSON.parse(base64Decode);
-            return handler(req, res);
+            const datosToken = JSON.parse(base64Decode)
+            return handler(req, res, datosToken);
         }
         catch (e) {
             res.status(403).send(e.message);

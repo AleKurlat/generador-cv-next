@@ -13,7 +13,8 @@ export const preLoader =
 export function responderError(e) {
     if (e.response) {
         if (e.response.status === 403) {
-            swal("No tiene permiso para realizar esta acción, o la sesión almacenada caducó. Iniciar nueva sesión");
+            //swal("No tiene permiso para realizar esta acción, o la sesión almacenada caducó. Iniciar nueva sesión");
+            swal(e.response.data);
             return 403;
         } else {
             if (e.response.data.Error) {
