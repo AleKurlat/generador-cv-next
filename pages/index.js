@@ -7,7 +7,6 @@ import { Button } from 'reactstrap';
 import { useRouter } from 'next/router';
 import axios from "axios";
 import { preLoader, responderError, hostAPI, obtenerDatosToken } from "../librerias/lib.jsx";
-import Link from 'next/link';
 import Layout from '../componentes/layout.jsx';
 
 export default function Home(props) {
@@ -64,10 +63,10 @@ export default function Home(props) {
         }
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         if (token) {
             preLoaderOn(true);
-            traerCV();
+            await traerCV();
             preLoaderOn(false);
         }
     }, [token]);
@@ -90,13 +89,14 @@ export default function Home(props) {
                                     </div>
                                     <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                                 </div>
-                                <Button onClick={() => { preLoaderOn(true); guardarCV(); preLoaderOn(false) }} color="info" size="lg">Guardar datos y generar CV</Button>
+                                <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false) }} color="info" size="lg">Guardar datos y generar CV</Button>
                                 {zonaPreLoader}
                             </div>
                         </div>
                     </Layout>
                 )
             } else {
+                console.log(statePreLoader)
                 return (
                     <Layout {...props}>
                         {zonaPreLoader}
