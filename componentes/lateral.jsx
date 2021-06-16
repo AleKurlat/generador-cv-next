@@ -1,10 +1,16 @@
 export default function Lateral(props) {
     const { datosLateral, urlImagen } = props;
     const arrayMapeado = datosLateral.map((item, i) => {
+        let zonaValor;
+        if (item.valorItem.toLowerCase().includes("http")) {
+            zonaValor = <a href={item.valorItem}>{item.valorItem}</a>
+        } else {
+            zonaValor = item.valorItem;
+        }
         return (
             <div key={i}>
                 <h4>{item.nombreItem}</h4>
-                <p>{item.valorItem}</p>
+                <p>{zonaValor}</p>
             </div>
         )
     });

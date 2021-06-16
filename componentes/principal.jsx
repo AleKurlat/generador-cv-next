@@ -7,10 +7,16 @@ export default function Principal(props) {
                 <div>
                     <h3>{apartado.subtitulo}</h3>
                     {apartado.items.map((item, j) => {
+                        let zonaParrafo;
+                        if (item.parrafo.toLowerCase().includes("http")) {
+                            zonaParrafo = <a href={item.parrafo}>{item.parrafo}</a>
+                        } else {
+                            zonaParrafo = item.parrafo;
+                        }
                         return (
                             <div key={j}>
                                 <p><strong>{item.encabezadoP}</strong></p>
-                                <p >{item.parrafo}</p>
+                                <p>{zonaParrafo}</p>
                             </div>
                         )
                     })}
