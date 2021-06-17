@@ -161,6 +161,9 @@ form{
     flex-direction: column;
     margin-bottom: 10px;
     margin-top:10px;
+    background-color: #e6e8e8;
+    padding:10px!important;
+    border-radius: 7px;
 }
 
 label{
@@ -203,6 +206,18 @@ label{
     margin-block-end: 1em!important;
     text-align: justify!important;
 }
+
+.botonera {
+    display: flex;
+}
+
+.botonera .btn {
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
 
 @media (min-width: 800px) {
 .contenedor{

@@ -27,12 +27,20 @@ export default function FormPrincipal(props) {
                                 <Label>Párrafo</Label>
                                 <Input type="textarea" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
                             </FormGroup>
-                            <Button color="danger" onClick={() => { eliminarParrafo(i, j) }}>Eliminar parrafo</Button>
+                            <div className="botonera">
+                                <Button color="warning" onClick={() => { subirParrafo(i, j) }}>Subir párrafo</Button>
+                                <Button color="warning" onClick={() => { bajarParrafo(i, j) }}>Bajar párrafo</Button>
+                                <Button color="danger" onClick={() => { eliminarParrafo(i, j) }}>Eliminar párrafo</Button>
+                            </div>
                         </div>
                     )
                 })}
-                <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar párrafo</Button>
-                <Button color="danger" onClick={() => { eliminarApartado(i) }}>Eliminar apartado</Button>
+                <div className="botonera">
+                    <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar párrafo</Button>
+                    <Button color="info" onClick={() => { subirApartado(i) }}>Subir apartado</Button>
+                    <Button color="info" onClick={() => { bajarApartado(i) }}>Bajar apartado</Button>
+                    <Button color="danger" onClick={() => { eliminarApartado(i) }}>Eliminar apartado</Button>
+                </div>
             </div>
         )
     });
@@ -61,9 +69,59 @@ export default function FormPrincipal(props) {
         setDatosPrincipal(arrayProvisorio);
     }
 
+    function subirApartado(viejoOrden) {
+        let elementoMovido = [...datosPrincipal][viejoOrden];
+        let arrayProvisorio = [...datosPrincipal].filter((elemento, j) => {
+            return (j !== viejoOrden)
+        });
+        let nuevoOrden = 0;
+        if (viejoOrden > 0) { nuevoOrden = viejoOrden - 1 }
+        arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
+        setDatosPrincipal(arrayProvisorio);
+    }
+
+    function bajarApartado(viejoOrden) {
+        const cantDestacados = datosPrincipal.length;
+        let elementoMovido = [...datosPrincipal][viejoOrden];
+        let arrayProvisorio = [...datosPrincipal].filter((elemento, j) => {
+            return (j !== viejoOrden)
+        });
+        let nuevoOrden = cantDestacados - 1;
+        if (viejoOrden < (cantDestacados - 1)) { nuevoOrden = viejoOrden + 1 }
+        arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
+        setDatosPrincipal(arrayProvisorio);
+    }
+
     function eliminarParrafo(i, j) {
         let arrayProvisorio = [...datosPrincipal];
         arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
+        setDatosPrincipal(arrayProvisorio);
+    }
+
+    function subirParrafo(numeroApartado, viejoOrdenParr) {
+        let arrayProvisorio = [...datosPrincipal];
+        let elementoMovido = arrayProvisorio[numeroApartado].items[viejoOrdenParr];
+        arrayProvisorio[numeroApartado].items = arrayProvisorio[numeroApartado].items.filter((elemento, j) => {
+            return (j !== viejoOrdenParr)
+        });
+
+        let nuevoOrdenParr = 0;
+        if (viejoOrdenParr > 0) { nuevoOrdenParr = viejoOrdenParr - 1 }
+        arrayProvisorio[numeroApartado].items.splice(nuevoOrdenParr, 0, elementoMovido);
+        setDatosPrincipal(arrayProvisorio);
+    }
+
+    function bajarParrafo(numeroApartado, viejoOrdenParr) {
+        const cantParrafos = datosPrincipal[numeroApartado].items.length;
+        let arrayProvisorio = [...datosPrincipal];
+        let elementoMovido = arrayProvisorio[numeroApartado].items[viejoOrdenParr];
+        arrayProvisorio[numeroApartado].items = arrayProvisorio[numeroApartado].items.filter((elemento, j) => {
+            return (j !== viejoOrdenParr)
+        });
+
+        let nuevoOrdenParr = cantParrafos - 1;
+        if (viejoOrdenParr < (cantParrafos - 1)) { nuevoOrdenParr = viejoOrdenParr + 1 }
+        arrayProvisorio[numeroApartado].items.splice(nuevoOrdenParr, 0, elementoMovido);
         setDatosPrincipal(arrayProvisorio);
     }
 
