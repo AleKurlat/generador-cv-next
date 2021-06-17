@@ -22,7 +22,11 @@ export default function FormLateral(props) {
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="valorItem" value={datosLateral[i].valorItem} placeholder="Escriba aquí">
                     </Input>
                 </FormGroup>
-                <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar campo</Button>
+                <div className="botonera">
+                    <Button color="warning" onClick={() => { subirCampo(i) }}>Subir campo</Button>
+                    <Button color="warning" onClick={() => { bajarCampo(i) }}>Bajar campo</Button>
+                    <Button color="danger" onClick={() => { eliminarCampo(i) }}>Eliminar campo</Button>
+                </div>
             </div>
         )
     });
@@ -36,6 +40,29 @@ export default function FormLateral(props) {
     function agregarCampo() {
         let arrayProvisorio = [...datosLateral];
         arrayProvisorio.push(objLateralVacio);
+        setDatosLateral(arrayProvisorio);
+    }
+
+    function subirCampo(viejoOrden) {
+        let elementoMovido = [...datosLateral][viejoOrden];
+        let arrayProvisorio = [...datosLateral].filter((elemento, j) => {
+            return (j !== viejoOrden)
+        });
+        let nuevoOrden = 0;
+        if (viejoOrden > 0) { nuevoOrden = viejoOrden - 1 }
+        arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
+        setDatosLateral(arrayProvisorio);
+    }
+
+    function bajarCampo(viejoOrden) {
+        const cantDestacados = datosLateral.length;
+        let elementoMovido = [...datosLateral][viejoOrden];
+        let arrayProvisorio = [...datosLateral].filter((elemento, j) => {
+            return (j !== viejoOrden)
+        });
+        let nuevoOrden = cantDestacados - 1;
+        if (viejoOrden < (cantDestacados - 1)) { nuevoOrden = viejoOrden + 1 }
+        arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
         setDatosLateral(arrayProvisorio);
     }
 
