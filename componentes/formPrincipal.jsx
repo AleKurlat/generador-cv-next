@@ -25,21 +25,23 @@ export default function FormPrincipal(props) {
                             </FormGroup>
                             <FormGroup>
                                 <Label>Párrafo</Label>
-                                <Input type="textarea" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
+                                <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
                             </FormGroup>
                             <div className="botonera">
-                                <Button color="warning" onClick={() => { subirParrafo(i, j) }}>Subir párrafo</Button>
-                                <Button color="warning" onClick={() => { bajarParrafo(i, j) }}>Bajar párrafo</Button>
-                                <Button color="danger" onClick={() => { eliminarParrafo(i, j) }}>Eliminar párrafo</Button>
+                                <Button color="warning" onClick={() => { subirParrafo(i, j) }}>Subir este párrafo</Button>
+                                <Button color="warning" onClick={() => { bajarParrafo(i, j) }}>Bajar este párrafo</Button>
+                                <Button color="danger" onClick={() => { eliminarParrafo(i, j) }}>Eliminar este párrafo</Button>
                             </div>
                         </div>
                     )
                 })}
                 <div className="botonera">
-                    <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar párrafo</Button>
-                    <Button color="info" onClick={() => { subirApartado(i) }}>Subir apartado</Button>
-                    <Button color="info" onClick={() => { bajarApartado(i) }}>Bajar apartado</Button>
-                    <Button color="danger" onClick={() => { eliminarApartado(i) }}>Eliminar apartado</Button>
+                    <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar nuevo párrafo</Button>
+                </div>
+                <div className="botonera">
+                    <Button color="info" onClick={() => { subirApartado(i) }}>Subir este apartado</Button>
+                    <Button color="info" onClick={() => { bajarApartado(i) }}>Bajar este apartado</Button>
+                    <Button color="danger" onClick={() => { eliminarApartado(i) }}>Eliminar este apartado</Button>
                 </div>
             </div>
         )
@@ -135,7 +137,7 @@ export default function FormPrincipal(props) {
         <section className="cuadroPrincipal">
             <Form>
                 {arrayCampos}
-                <Button color="primary" onClick={agregarApartado} style={{ "marginBottom": "20px" }}>Agregar apartado</Button>
+                <Button color="primary" onClick={agregarApartado} style={{ "marginBottom": "20px" }}>Agregar nuevo apartado</Button>
             </Form>
         </section>
     )
