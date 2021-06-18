@@ -78,22 +78,26 @@ export default function Home(props) {
         if (token) {
             if (CVCargado) {
                 return (
-                    <Layout {...props}>
-                        <div className="pagForm">
-                            <div className="contenedor">
-                                <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
-                                <div className="cuerpo">
-                                    <div className="barra-lateral">
-                                        <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
-                                        <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+                    <div className="editarCV">
+                        <Layout {...props}>
+                            <div className="pagForm">
+                                <div className="contenedor">
+                                    <FormHeader datosHeader={datosHeader} setDatosHeader={setDatosHeader} />
+                                    <div className="cuerpo">
+                                        <div className="barra-lateral">
+                                            <FormImagen urlImagen={urlImagen} setUrlImagen={setUrlImagen} />
+                                            <FormLateral datosLateral={datosLateral} setDatosLateral={setDatosLateral} objLateralVacio={objLateralVacio} />
+                                        </div>
+                                        <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                                     </div>
-                                    <FormPrincipal datosPrincipal={datosPrincipal} setDatosPrincipal={setDatosPrincipal} objPrincipalVacio={objPrincipalVacio} itemPrincipalVacio={itemPrincipalVacio} />
                                 </div>
-                                <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false) }} color="info" size="lg">Guardar datos y generar CV</Button>
-                                {zonaPreLoader}
                             </div>
+                        </Layout>
+                        <div className="barraGuardar">
+                            {zonaPreLoader}
+                            <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false) }} color="info" size="lg">Guardar datos y generar CV</Button>
                         </div>
-                    </Layout>
+                    </div>
                 )
             } else {
                 return (
