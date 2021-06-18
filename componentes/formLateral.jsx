@@ -10,7 +10,7 @@ export default function FormLateral(props) {
                 <FormGroup>
                     <Label>
                         <h4>Tipo de dato </h4>
-                        <div className="mb-2">Ej: "teléfono", "mail", etc.</div>
+                        <div className="mb-2">Ejemplos: "mail", "teléfono", etc.</div>
                     </Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="nombreItem" value={datosLateral[i].nombreItem} placeholder="Escriba aquí">
                     </Input>
@@ -18,7 +18,7 @@ export default function FormLateral(props) {
                 <FormGroup>
                     <Label>
                         <h4>Valor del dato</h4>
-                        <div className="mb-2">Ej: "123@gmail.com", "0000-0000"</div>
+                        <div className="mb-2">Ejemplos: "123@gmail.com", "15-4000-0000"</div>
                     </Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="valorItem" value={datosLateral[i].valorItem} placeholder="Escriba aquí">
                     </Input>
