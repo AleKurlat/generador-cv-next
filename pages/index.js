@@ -95,7 +95,7 @@ export default function Home(props) {
                         </Layout>
                         <div className="barraGuardar">
                             {zonaPreLoader}
-                            <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false) }} color="info" size="lg">Guardar datos y generar CV</Button>
+                            <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false) }} color="primary" size="lg">Guardar datos y generar CV</Button>
                         </div>
                     </div>
                 )
