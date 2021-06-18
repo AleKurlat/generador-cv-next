@@ -23,8 +23,10 @@ export default function Home(props) {
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
     const [statePreLoader, preLoaderOn] = useState(false);
     const [CVCargado, setCVCargado] = useState(false);
+    const [intervaloOn, setIntervaloOn] = useState(false);
     const { token, loading } = props;
     const autorizacion = { headers: { Authorization: token } };
+    const [contador, setContador] = useState(0)
 
     async function traerCV() {
         try {
@@ -53,10 +55,7 @@ export default function Home(props) {
             const id = datosToken.user_id;
             const urlAPI = hostAPI + "/cvs/" + id;
             const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
-            const loguear = await axios.put(urlAPI, objeto, autorizacion);
-            if (loguear && loguear.status === 200) {
-                router.push("/verCV");
-            }
+            await axios.put(urlAPI, objeto, autorizacion);
         }
         catch (e) {
             return responderError(e)
@@ -68,8 +67,28 @@ export default function Home(props) {
             preLoaderOn(true);
             await traerCV();
             preLoaderOn(false);
+            setIntervaloOn(true);
         }
     }, [token]);
+
+    useEffect(() => {
+        let intervalo;
+        if (intervaloOn) {
+            setInterval(() => {
+                setContador(contador => contador + 1)
+            }, 20000)
+        }
+        return () => {
+            clearInterval(intervalo);
+        }
+    }, [intervaloOn])
+
+    useEffect(() => {
+        if (intervaloOn) {
+            console.log("Guardando automáticamente los datos ingresados")
+            guardarCV();
+        }
+    }, [contador, intervaloOn])
 
     let zonaPreLoader;
     if (statePreLoader) { zonaPreLoader = preLoader };
@@ -95,7 +114,8 @@ export default function Home(props) {
                         </Layout>
                         <div className="barraGuardar">
                             {zonaPreLoader}
-                            <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false) }} color="primary" size="lg">Guardar datos y generar CV</Button>
+                            <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false); router.push("/verCV"); }} color="primary" size="lg">Generar CV</Button>
+                            <div>Los datos ingresados se guardan automáticamente cada 20 segundos</div>
                         </div>
                     </div>
                 )
