@@ -34,11 +34,11 @@ export default function FormPrincipal(props) {
                             </FormGroup>
                             <div className="botonera">
                                 <Button color="warning" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
-                                <Tooltip placement="down" isOpen={tooltipOpen} target={"subirParrafo" + i + "x" + j} toggle={toggle}>Subir párrafo</Tooltip>
+                                <Tooltip placement="bottom" isOpen={tooltipOpen} target={"subirParrafo" + i + "x" + j} toggle={toggle}>Subir párrafo</Tooltip>
                                 <Button color="warning" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
-                                <Tooltip placement="down" isOpen={tooltipOpen} target={"bajarParrafo" + i + "x" + j} toggle={toggle}>Bajar párrafo</Tooltip>
+                                <Tooltip placement="bottom" isOpen={tooltipOpen} target={"bajarParrafo" + i + "x" + j} toggle={toggle}>Bajar párrafo</Tooltip>
                                 <Button id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
-                                <Tooltip placement="down" isOpen={tooltipOpen} target={"eliminarParrafo" + i + "x" + j} toggle={toggle}>Eliminar párrafo</Tooltip>
+                                <Tooltip placement="bottom" isOpen={tooltipOpen} target={"eliminarParrafo" + i + "x" + j} toggle={toggle}>Eliminar párrafo</Tooltip>
                             </div>
                         </div>
                     )
@@ -47,12 +47,12 @@ export default function FormPrincipal(props) {
                     <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar nuevo párrafo</Button>
                 </div>
                 <div className="botonera">
-                    <Button color="info" onClick={() => { subirApartado(i) }}><img src="/arrowup.png" id="subirApartado" /></Button>
-                    <Tooltip placement="down" isOpen={tooltipOpenAp} target="subirApartado" toggle={toggleAp}>Subir apartado</Tooltip>
-                    <Button color="info" onClick={() => { bajarApartado(i) }}><img src="/arrowdown.png" id="bajarApartado" /></Button>
-                    <Tooltip placement="down" isOpen={tooltipOpenAp} target="bajarApartado" toggle={toggleAp}>Bajar apartado</Tooltip>
-                    <Button onClick={() => { eliminarApartado(i) }}><img src="/eliminar.svg" id="eliminarApartado" /></Button>
-                    <Tooltip placement="down" isOpen={tooltipOpenAp} target="eliminarApartado" toggle={toggleAp}>Eliminar apartado</Tooltip>
+                    <Button color="info" id={"subirApartado" + i} onClick={() => { subirApartado(i) }}><img src="/arrowup.png" /></Button>
+                    <Tooltip placement="bottom" isOpen={tooltipOpenAp} target={"subirApartado" + i} toggle={toggleAp}>Subir apartado</Tooltip>
+                    <Button color="info" id={"bajarApartado" + i} onClick={() => { bajarApartado(i) }}><img src="/arrowdown.png" /></Button>
+                    <Tooltip placement="bottom" isOpen={tooltipOpenAp} target={"bajarApartado" + i} toggle={toggleAp}>Bajar apartado</Tooltip>
+                    <Button id={"eliminarApartado" + i} onClick={() => { eliminarApartado(i) }}><img src="/eliminar.svg" /></Button>
+                    <Tooltip placement="bottom" isOpen={tooltipOpenAp} target={"eliminarApartado" + i} toggle={toggleAp}>Eliminar apartado</Tooltip>
                 </div>
             </div>
         )
