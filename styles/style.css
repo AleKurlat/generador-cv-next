@@ -98,7 +98,6 @@ img {border-radius: 7px;}
     padding-top: 15px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
 }
 
 .card2 > div {
@@ -242,6 +241,11 @@ label{
 
 .editarCV .layout{
     margin-bottom:50px;
+}
+
+.editarCV .card2 {
+    background-color: aliceblue!important;
+    margin-bottom:50px!important;
 }
 
 @media (min-width: 800px) {

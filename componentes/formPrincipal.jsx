@@ -21,6 +21,14 @@ export default function FormPrincipal(props) {
                 {datosPrincipal[i].items.map((item, j) => {
                     return (
                         <div className="parrafo" key={i + "+" + j}>
+                            <div className="botonera">
+                                <Button color="warning" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
+                                <UncontrolledTooltip placement="bottom" target={"subirParrafo" + i + "x" + j} >Reubicar párrafo hacia arriba</UncontrolledTooltip>
+                                <Button color="warning" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
+                                <UncontrolledTooltip placement="bottom" target={"bajarParrafo" + i + "x" + j} >Reubicar párrafo hacia abajo</UncontrolledTooltip>
+                                <Button id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
+                                <UncontrolledTooltip placement="bottom" target={"eliminarParrafo" + i + "x" + j} >Eliminar párrafo</UncontrolledTooltip>
+                            </div>
                             <FormGroup>
                                 <Label><strong>Encabezado del párrafo</strong></Label>
                                 <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
@@ -29,14 +37,6 @@ export default function FormPrincipal(props) {
                                 <Label>Párrafo</Label>
                                 <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
                             </FormGroup>
-                            <div className="botonera">
-                                <Button color="warning" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
-                                <UncontrolledTooltip placement="bottom" target={"subirParrafo" + i + "x" + j} >Subir párrafo</UncontrolledTooltip>
-                                <Button color="warning" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
-                                <UncontrolledTooltip placement="bottom" target={"bajarParrafo" + i + "x" + j} >Bajar párrafo</UncontrolledTooltip>
-                                <Button id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
-                                <UncontrolledTooltip placement="bottom" target={"eliminarParrafo" + i + "x" + j} >Eliminar párrafo</UncontrolledTooltip>
-                            </div>
                         </div>
                     )
                 })}
@@ -45,9 +45,9 @@ export default function FormPrincipal(props) {
                 </div>
                 <div className="botonera">
                     <Button color="info" id={"subirApartado" + i} onClick={() => { subirApartado(i) }}><img src="/arrowup.png" /></Button>
-                    <UncontrolledTooltip placement="bottom" target={"subirApartado" + i} >Subir apartado</UncontrolledTooltip>
+                    <UncontrolledTooltip placement="bottom" target={"subirApartado" + i} >Reubicar apartado hacia arriba</UncontrolledTooltip>
                     <Button color="info" id={"bajarApartado" + i} onClick={() => { bajarApartado(i) }}><img src="/arrowdown.png" /></Button>
-                    <UncontrolledTooltip placement="bottom" target={"bajarApartado" + i} >Bajar apartado</UncontrolledTooltip>
+                    <UncontrolledTooltip placement="bottom" target={"bajarApartado" + i} >Reubicar apartado hacia abajo</UncontrolledTooltip>
                     <Button id={"eliminarApartado" + i} onClick={() => { eliminarApartado(i) }}><img src="/eliminar.svg" /></Button>
                     <UncontrolledTooltip placement="bottom" target={"eliminarApartado" + i} >Eliminar apartado</UncontrolledTooltip>
                 </div>
