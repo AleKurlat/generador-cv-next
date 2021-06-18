@@ -10,11 +10,11 @@ export default function FormPrincipal(props) {
             <div key={i} className="card2">
                 <FormGroup>
                     <Label><h2>Titulo del apartado</h2></Label>
-                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo} placeholder="Escriba aquí">
+                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo} placeholder="Escriba aquí (ejemplo: 'Experiencia laboral')">
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Label><h3>Subtitulo del apartado</h3></Label>
+                    <Label><h3>Subtitulo del apartado (optativo)</h3></Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="subtitulo" value={datosPrincipal[i].subtitulo} placeholder="Escriba aquí">
                     </Input>
                 </FormGroup>
@@ -22,12 +22,12 @@ export default function FormPrincipal(props) {
                     return (
                         <div className="parrafo" key={i + "+" + j}>
                             <FormGroup>
-                                <Label><strong>Encabezado del párrafo</strong></Label>
-                                <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
+                                <Label><strong>Encabezado del párrafo (optativo)</strong></Label>
+                                <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>
                             </FormGroup>
                             <FormGroup>
                                 <Label>Párrafo</Label>
-                                <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
+                                <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplos: 'Empresa X', 'Período 2010-2015')"></Input>
                             </FormGroup>
                             <div className="botonera">
                                 <Button color="primary" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>

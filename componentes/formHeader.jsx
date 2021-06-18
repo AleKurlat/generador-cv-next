@@ -15,8 +15,8 @@ export default function FormHeader(props) {
                 </Input>
             </FormGroup>
             <FormGroup>
-                <Label><strong>Descripción</strong></Label>
-                <Input type="text" onChange={handler} name="descripcion" value={datosHeader.descripcion} placeholder="Escriba aquí">
+                <Label><strong>Descripción (optativo)</strong></Label>
+                <Input type="text" onChange={handler} name="descripcion" value={datosHeader.descripcion} placeholder="Escriba aquí (ejemplo: 'Asistente administrativo')">
                 </Input>
             </FormGroup>
         </Form>
