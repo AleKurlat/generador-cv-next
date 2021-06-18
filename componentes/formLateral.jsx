@@ -1,12 +1,9 @@
-import { Form, FormGroup, Input, Button, Label, Tooltip } from 'reactstrap';
+import { Form, FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
 import React, { useState } from 'react';
 import swal from 'sweetalert';
 
 export default function FormLateral(props) {
     const { datosLateral, setDatosLateral, objLateralVacio } = props;
-    const [tooltipOpen, setTooltipOpen] = useState(false);
-    const toggle = () => setTooltipOpen(!tooltipOpen);
-
     let arrayCampos = datosLateral.map((el, i) => {
         return (
             <div key={i} className="parrafo">
@@ -27,12 +24,18 @@ export default function FormLateral(props) {
                     </Input>
                 </FormGroup>
                 <div className="botonera">
-                    <Button color="warning" id={"subirCampo" + i} onClick={() => { subirCampo(i) }}><img src="/arrowup.png" /></Button>
-                    <Tooltip placement="bottom" isOpen={tooltipOpen} target={"subirCampo" + i} toggle={toggle}>Subir</Tooltip>
-                    <Button color="warning" id={"bajarCampo" + i} onClick={() => { bajarCampo(i) }}><img src="/arrowdown.png" /></Button>
-                    <Tooltip placement="bottom" isOpen={tooltipOpen} target={"bajarCampo" + i} toggle={toggle}>Bajar</Tooltip>
-                    <Button id={"eliminarCampo" + i} onClick={() => { eliminarCampo(i) }}><img src="/eliminar.svg" /></Button>
-                    <Tooltip placement="bottom" isOpen={tooltipOpen} target={"eliminarCampo" + i} toggle={toggle}>Eliminar</Tooltip>
+                    <div>
+                        <Button color="warning" id={"subirCampo" + i} onClick={() => { subirCampo(i) }}><img src="/arrowup.png" /></Button>
+                        <UncontrolledTooltip placement="bottom" target={"subirCampo" + i} >Subir</UncontrolledTooltip>
+                    </div>
+                    <div>
+                        <Button color="warning" id={"bajarCampo" + i} onClick={() => { bajarCampo(i) }}><img src="/arrowdown.png" /></Button>
+                        <UncontrolledTooltip placement="bottom" target={"bajarCampo" + i} >Bajar</UncontrolledTooltip>
+                    </div>
+                    <div>
+                        <Button id={"eliminarCampo" + i} onClick={() => { eliminarCampo(i) }}><img src="/eliminar.svg" /></Button>
+                        <UncontrolledTooltip placement="bottom" target={"eliminarCampo" + i} >Eliminar</UncontrolledTooltip>
+                    </div>
                 </div>
             </div>
         )
