@@ -40,7 +40,10 @@ export default function FormPrincipal(props) {
                         </div>
                     )
                 })}
-                <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar nuevo párrafo</Button>
+                <div className="botonera">
+                    <Button color="primary" id={"agregarParrafo" + i} onClick={() => { agregarParrafo(i) }}><img src="/agregar.svg" /></Button>
+                    <UncontrolledTooltip placement="bottom" target={"agregarParrafo" + i} >Agregar nuevo párrafo</UncontrolledTooltip>
+                </div>
                 <div className="botonera">
                     <Button color="primary" size="sm" id={"subirApartado" + i} onClick={() => { subirApartado(i) }}><img src="/arrowup.png" /></Button>
                     <UncontrolledTooltip placement="bottom" target={"subirApartado" + i} >Reubicar apartado hacia arriba</UncontrolledTooltip>
@@ -87,7 +90,9 @@ export default function FormPrincipal(props) {
             return (j !== viejoOrden)
         });
         let nuevoOrden = 0;
-        if (viejoOrden > 0) { nuevoOrden = viejoOrden - 1 }
+        if (viejoOrden > 0) { nuevoOrden = viejoOrden - 1 } else {
+            swal("Este apartado ya es el primero de todos")
+        }
         arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
         setDatosPrincipal(arrayProvisorio);
     }
@@ -99,7 +104,9 @@ export default function FormPrincipal(props) {
             return (j !== viejoOrden)
         });
         let nuevoOrden = cantDestacados - 1;
-        if (viejoOrden < (cantDestacados - 1)) { nuevoOrden = viejoOrden + 1 }
+        if (viejoOrden < (cantDestacados - 1)) { nuevoOrden = viejoOrden + 1 } else {
+            swal("Este apartado ya es el último de todos")
+        }
         arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
         setDatosPrincipal(arrayProvisorio);
     }
@@ -122,7 +129,9 @@ export default function FormPrincipal(props) {
         });
 
         let nuevoOrdenParr = 0;
-        if (viejoOrdenParr > 0) { nuevoOrdenParr = viejoOrdenParr - 1 }
+        if (viejoOrdenParr > 0) { nuevoOrdenParr = viejoOrdenParr - 1 } else {
+            swal("Este párrafo ya es el primero de todos")
+        }
         arrayProvisorio[numeroApartado].items.splice(nuevoOrdenParr, 0, elementoMovido);
         setDatosPrincipal(arrayProvisorio);
     }
@@ -136,7 +145,9 @@ export default function FormPrincipal(props) {
         });
 
         let nuevoOrdenParr = cantParrafos - 1;
-        if (viejoOrdenParr < (cantParrafos - 1)) { nuevoOrdenParr = viejoOrdenParr + 1 }
+        if (viejoOrdenParr < (cantParrafos - 1)) { nuevoOrdenParr = viejoOrdenParr + 1 } else {
+            swal("Este párrafo ya es el último de todos")
+        }
         arrayProvisorio[numeroApartado].items.splice(nuevoOrdenParr, 0, elementoMovido);
         setDatosPrincipal(arrayProvisorio);
     }
@@ -151,7 +162,10 @@ export default function FormPrincipal(props) {
         <section className="cuadroPrincipal">
             <Form>
                 {arrayCampos}
-                <Button color="primary" onClick={agregarApartado} style={{ "marginBottom": "20px" }}>Agregar nuevo apartado</Button>
+                <div className="botonera">
+                    <Button color="primary" id="agregarApartado" onClick={agregarApartado} style={{ "marginBottom": "20px" }}><img src="/agregar.svg" /></Button>
+                    <UncontrolledTooltip placement="bottom" target="agregarApartado" >Agregar nuevo apartado</UncontrolledTooltip>
+                </div>
             </Form>
         </section>
     )

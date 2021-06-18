@@ -24,11 +24,11 @@ export default function FormLateral(props) {
                     </Input>
                 </FormGroup>
                 <div className="botonera">
-                    <Button color="info" id={"subirCampo" + i} onClick={() => { subirCampo(i) }}><img src="/arrowup.png" /></Button>
+                    <Button color="primary" id={"subirCampo" + i} onClick={() => { subirCampo(i) }}><img src="/arrowup.png" /></Button>
                     <UncontrolledTooltip placement="bottom" target={"subirCampo" + i} >Reubicar campo hacia arriba</UncontrolledTooltip>
-                    <Button color="info" id={"bajarCampo" + i} onClick={() => { bajarCampo(i) }}><img src="/arrowdown.png" /></Button>
+                    <Button color="primary" id={"bajarCampo" + i} onClick={() => { bajarCampo(i) }}><img src="/arrowdown.png" /></Button>
                     <UncontrolledTooltip placement="bottom" target={"bajarCampo" + i} >Reubicar campo hacia abajo</UncontrolledTooltip>
-                    <Button color="info" id={"eliminarCampo" + i} onClick={() => { eliminarCampo(i) }}><img src="/eliminar.svg" /></Button>
+                    <Button color="primary" id={"eliminarCampo" + i} onClick={() => { eliminarCampo(i) }}><img src="/eliminar.svg" /></Button>
                     <UncontrolledTooltip placement="bottom" target={"eliminarCampo" + i} >Eliminar campo</UncontrolledTooltip>
                 </div>
             </div>
@@ -53,7 +53,9 @@ export default function FormLateral(props) {
             return (j !== viejoOrden)
         });
         let nuevoOrden = 0;
-        if (viejoOrden > 0) { nuevoOrden = viejoOrden - 1 }
+        if (viejoOrden > 0) { nuevoOrden = viejoOrden - 1 } else {
+            swal("Este campo ya es el primero de todos")
+        }
         arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
         setDatosLateral(arrayProvisorio);
     }
@@ -65,7 +67,9 @@ export default function FormLateral(props) {
             return (j !== viejoOrden)
         });
         let nuevoOrden = cantDestacados - 1;
-        if (viejoOrden < (cantDestacados - 1)) { nuevoOrden = viejoOrden + 1 }
+        if (viejoOrden < (cantDestacados - 1)) { nuevoOrden = viejoOrden + 1 } else {
+            swal("Este campo ya es el último de todos")
+        }
         arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
         setDatosLateral(arrayProvisorio);
     }
@@ -84,7 +88,10 @@ export default function FormLateral(props) {
         <section>
             <Form>
                 {arrayCampos}
-                <Button color="primary" onClick={agregarCampo}>Agregar campo de datos</Button>
+                <div className="botonera">
+                    <Button id="agregarCampo" color="primary" onClick={agregarCampo}><img src="/agregar.svg" /></Button>
+                    <UncontrolledTooltip placement="bottom" target="agregarCampo" >Agregar campo de datos</UncontrolledTooltip>
+                </div>
             </Form>
         </section>
     )
