@@ -1,7 +1,12 @@
-import { Form, FormGroup, Input, Button, Label } from 'reactstrap';
+import { Form, FormGroup, Input, Button, Label, Tooltip } from 'reactstrap';
+import React, { useState } from 'react';
 
 export default function FormPrincipal(props) {
     const { datosPrincipal, setDatosPrincipal, objPrincipalVacio, itemPrincipalVacio } = props;
+    const [tooltipOpen, setTooltipOpen] = useState(false);
+    const [tooltipOpenAp, setTooltipOpenAp] = useState(false);
+    const toggle = () => setTooltipOpen(!tooltipOpen);
+    const toggleAp = () => setTooltipOpenAp(!tooltipOpenAp);
 
     let arrayCampos = datosPrincipal.map((el, i) => {
         return (
@@ -28,9 +33,12 @@ export default function FormPrincipal(props) {
                                 <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí"></Input>
                             </FormGroup>
                             <div className="botonera">
-                                <Button color="warning" onClick={() => { subirParrafo(i, j) }}>Subir este párrafo</Button>
-                                <Button color="warning" onClick={() => { bajarParrafo(i, j) }}>Bajar este párrafo</Button>
-                                <Button color="danger" onClick={() => { eliminarParrafo(i, j) }}>Eliminar este párrafo</Button>
+                                <Button color="warning" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
+                                <Tooltip placement="down" isOpen={tooltipOpen} target={"subirParrafo" + i + "x" + j} toggle={toggle}>Subir párrafo</Tooltip>
+                                <Button color="warning" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
+                                <Tooltip placement="down" isOpen={tooltipOpen} target={"bajarParrafo" + i + "x" + j} toggle={toggle}>Bajar párrafo</Tooltip>
+                                <Button id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
+                                <Tooltip placement="down" isOpen={tooltipOpen} target={"eliminarParrafo" + i + "x" + j} toggle={toggle}>Eliminar párrafo</Tooltip>
                             </div>
                         </div>
                     )
@@ -39,9 +47,12 @@ export default function FormPrincipal(props) {
                     <Button color="primary" onClick={() => { agregarParrafo(i) }}>Agregar nuevo párrafo</Button>
                 </div>
                 <div className="botonera">
-                    <Button color="info" onClick={() => { subirApartado(i) }}>Subir este apartado</Button>
-                    <Button color="info" onClick={() => { bajarApartado(i) }}>Bajar este apartado</Button>
-                    <Button color="danger" onClick={() => { eliminarApartado(i) }}>Eliminar este apartado</Button>
+                    <Button color="info" onClick={() => { subirApartado(i) }}><img src="/arrowup.png" id="subirApartado" /></Button>
+                    <Tooltip placement="down" isOpen={tooltipOpenAp} target="subirApartado" toggle={toggleAp}>Subir apartado</Tooltip>
+                    <Button color="info" onClick={() => { bajarApartado(i) }}><img src="/arrowdown.png" id="bajarApartado" /></Button>
+                    <Tooltip placement="down" isOpen={tooltipOpenAp} target="bajarApartado" toggle={toggleAp}>Bajar apartado</Tooltip>
+                    <Button onClick={() => { eliminarApartado(i) }}><img src="/eliminar.svg" id="eliminarApartado" /></Button>
+                    <Tooltip placement="down" isOpen={tooltipOpenAp} target="eliminarApartado" toggle={toggleAp}>Eliminar apartado</Tooltip>
                 </div>
             </div>
         )
