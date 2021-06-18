@@ -1,5 +1,6 @@
 import { Form, FormGroup, Input, Button, Label, Tooltip } from 'reactstrap';
 import React, { useState } from 'react';
+import swal from 'sweetalert';
 
 export default function FormLateral(props) {
     const { datosLateral, setDatosLateral, objLateralVacio } = props;
@@ -73,9 +74,13 @@ export default function FormLateral(props) {
     }
 
     function eliminarCampo(i) {
-        let arrayProvisorio = [...datosLateral];
-        arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-        setDatosLateral(arrayProvisorio);
+        if (datosLateral.length > 1) {
+            let arrayProvisorio = [...datosLateral];
+            arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+            setDatosLateral(arrayProvisorio);
+        } else {
+            swal("La barra lateral debe tener al menos un campo de datos");
+        }
     }
 
     return (

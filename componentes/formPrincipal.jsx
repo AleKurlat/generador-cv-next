@@ -1,5 +1,6 @@
 import { Form, FormGroup, Input, Button, Label, Tooltip } from 'reactstrap';
 import React, { useState } from 'react';
+import swal from 'sweetalert';
 
 export default function FormPrincipal(props) {
     const { datosPrincipal, setDatosPrincipal, objPrincipalVacio, itemPrincipalVacio } = props;
@@ -77,9 +78,13 @@ export default function FormPrincipal(props) {
     }
 
     function eliminarApartado(i) {
-        let arrayProvisorio = [...datosPrincipal];
-        arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-        setDatosPrincipal(arrayProvisorio);
+        if (datosPrincipal.length > 1) {
+            let arrayProvisorio = [...datosPrincipal];
+            arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+            setDatosPrincipal(arrayProvisorio);
+        } else {
+            swal("El CV debe tener por lo menos un apartado");
+        }
     }
 
     function subirApartado(viejoOrden) {
@@ -106,9 +111,13 @@ export default function FormPrincipal(props) {
     }
 
     function eliminarParrafo(i, j) {
-        let arrayProvisorio = [...datosPrincipal];
-        arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
-        setDatosPrincipal(arrayProvisorio);
+        if (datosPrincipal[i].items.length > 1) {
+            let arrayProvisorio = [...datosPrincipal];
+            arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
+            setDatosPrincipal(arrayProvisorio);
+        } else {
+            swal("Cada apartado debe tener al menos un párrafo");
+        }
     }
 
     function subirParrafo(numeroApartado, viejoOrdenParr) {
