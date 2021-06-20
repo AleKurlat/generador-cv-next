@@ -26,9 +26,6 @@ body{
 .contenedor{
     display:flex;
     flex-direction: column;
-    padding: 30px;
-    border: 1px lightgray solid;
-    border-radius: 7px;
     padding-bottom: 10px;
     margin:10px;
     width: 100%;
@@ -48,7 +45,7 @@ body{
 }
 
 .contenedorImagen {
-    width: 300px;
+    width: 200px;
     margin-top:10px;
     margin-bottom:20px;
 }
@@ -69,18 +66,15 @@ img{
     padding:8px;
     border-radius: 7px;
     margin-bottom: 1px;
-    font-size: 1.5rem!important;
+    font-size: 1.1rem!important;
 }
 
 .card2 h3 {
-    font-size: 1.17rem!important;
+    font-size: 1rem!important;
 }
 
 h1 {
-    font-size: xxx-large!important;
     margin:10px!important;
-    font-weight: 700!important;
-    line-height: normal!important;
 }
 
 h2, h3 {
@@ -106,17 +100,13 @@ img {border-radius: 7px;}
 }
 
 .header h2{
-    font-size: xx-large!important;
+    font-size: x-large!important;
     margin-bottom: 10px!important;
-}
-
-.barra-lateral p, .barra-lateral h4 {
-    font-size:larger;
 }
 
 .cuadroPrincipal p {
     margin-bottom: 6px;
-    font-size:1.1rem;
+    font-size:0.8rem;
 }
 
 .cuadroPrincipal p:last-child {
@@ -260,6 +250,14 @@ margin-left:0;
 .editarCV .card2 {
     background-color: aliceblue!important;
     margin-bottom:30px!important;
+}
+
+.barra-lateral h4{
+    font-size:1rem;
+}
+
+.barra-lateral p{
+    font-size:0.9rem;
 }
 
 @media (min-width: 800px) {
