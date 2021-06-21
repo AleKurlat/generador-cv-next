@@ -257,6 +257,10 @@ margin-left:0;
     min-width: 800px;
 }
 
+.verCV {
+    width:770px;
+}
+
 .barra-lateral h4{
     font-size:1rem;
 }
@@ -264,9 +268,3 @@ margin-left:0;
 .barra-lateral p{
     font-size:0.9rem;
 }
-
-@media (min-width: 800px) {
-.contenedor{
-    min-width: 80%;
-}
-  }

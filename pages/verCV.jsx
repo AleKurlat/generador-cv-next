@@ -43,7 +43,7 @@ export default function VerCV(props) {
   if (datosCV) {
     const { datosHeader, datosLateral, datosPrincipal, urlImagen } = datosCV;
     return (
-      <div className="contenedor">
+      <div className="contenedor verCV">
         <Head>
           <title>Creá tu CV</title>
           <meta name="description" content="App para generar tu Curriculum Vitae" />
