@@ -43,6 +43,12 @@ body{
     height: 938px;
     margin-right:20px;
     float:left;
+    min-width: 230px;
+}
+
+.editarCV .barra-lateral{
+    min-width:320px;
+    height: auto;
 }
 
 .contenedorImagen {
@@ -232,7 +238,7 @@ margin-left:0;
     padding: 5px;
     border-radius:7px;
     border: 1px solid #ebeef0;
-    width: 1070px;
+    width: 100%;
 }
 
 .editarCV{
@@ -248,6 +254,7 @@ margin-left:0;
 .editarCV .card2 {
     background-color: aliceblue!important;
     margin-bottom:30px!important;
+    min-width: 800px;
 }
 
 .barra-lateral h4{
