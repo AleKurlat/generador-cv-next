@@ -31,23 +31,24 @@ body{
     width: 100%;
 }
 .cuerpo{
-    display: flex;
     margin-top: 20px;
 }
 
 .barra-lateral{
-    max-width: 28%;
     padding:15px;
     background-color: #7c9eb1;
     border-radius: 7px;
     margin-bottom: 20px;
-    min-width: min-content;
+    width: min-content;
+    height: 938px;
+    margin-right:20px;
+    float:left;
 }
 
 .contenedorImagen {
     width: 200px;
     margin-top:10px;
-    margin-bottom:20px;
+    margin-bottom:40px;
 }
 
 img{
@@ -55,10 +56,7 @@ img{
 }
 
 .cuadroPrincipal{
-    margin-left: 25px;
     flex-grow:1;
-    display: flex;
-    flex-direction: column;
 }
 
 .card2 h2 {
@@ -114,7 +112,7 @@ img {border-radius: 7px;}
 }
 
 .textoLateral> div {
-    margin-bottom: 8px;
+    margin-bottom: 30px;
 }
 
 section{
