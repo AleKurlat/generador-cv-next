@@ -15,7 +15,7 @@ export default function Principal(props) {
                         }
                         return (
                             <div key={j}>
-                                <p><strong>{item.encabezadoP}</strong></p>
+                                <p><h3>{item.encabezadoP}</h3></p>
                                 <p>{zonaParrafo}</p>
                             </div>
                         )

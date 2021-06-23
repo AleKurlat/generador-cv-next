@@ -36,9 +36,8 @@ body{
     padding:15px;
     background-color: #7c9eb1;
     border-radius: 7px;
-    margin-bottom: 20px;
     width: min-content;
-    height: 938px;
+    height: 900px;
     margin-right:20px;
     float:left;
     min-width: 230px;
@@ -79,20 +78,13 @@ h1 {
     margin:10px!important;
 }
 
-h2, h3 {
-    margin-top:5px!important;
-    margin-bottom:5px!important;    
-}
-
 img {border-radius: 7px;}
 
 .card2 {
-    padding: 20px;
+    padding: 15px;
     border: 1px solid lightgray;
     margin-bottom: 20px; 
     border-radius: 7px;
-    padding-bottom: 15px;
-    padding-top: 15px;
     display: flex;
     flex-direction: column;
     break-inside: avoid;
@@ -267,3 +259,17 @@ margin-left:0;
 .barra-lateral p{
     font-size:0.9rem;
 }
+
+@media print {
+    body {
+margin: 0!important;
+padding: 0!important;
+    }
+    .contenedor {
+        margin: 0!important;
+padding: 0!important;
+    }
+    .card2{
+        margin-bottom:15px!important;
+    }
+  }

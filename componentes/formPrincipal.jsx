@@ -13,16 +13,11 @@ export default function FormPrincipal(props) {
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo} placeholder="Escriba aquí (ejemplo: 'Experiencia laboral')">
                     </Input>
                 </FormGroup>
-                <FormGroup>
-                    <Label><h3>Subtitulo del apartado (optativo)</h3></Label>
-                    <Input type="text" onChange={(evento) => { handler(evento, i) }} name="subtitulo" value={datosPrincipal[i].subtitulo} placeholder="Escriba aquí">
-                    </Input>
-                </FormGroup>
                 {datosPrincipal[i].items.map((item, j) => {
                     return (
                         <div className="parrafo" key={i + "+" + j}>
                             <FormGroup>
-                                <Label><strong>Encabezado del párrafo (optativo)</strong></Label>
+                                <Label><h3>Título del párrafo (optativo)</h3></Label>
                                 <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>
                             </FormGroup>
                             <FormGroup>
