@@ -5,7 +5,6 @@ export default function Principal(props) {
             <div className="card2" key={i}>
                 <h2>{apartado.titulo}</h2>
                 <div>
-                    <h3>{apartado.subtitulo}</h3>
                     {apartado.items.map((item, j) => {
                         let zonaParrafo;
                         if (item.parrafo.toLowerCase().includes("http")) {
