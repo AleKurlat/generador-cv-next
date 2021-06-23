@@ -24,8 +24,6 @@ body{
 }
 
 .contenedor{
-    display:flex;
-    flex-direction: column;
     padding-bottom: 10px;
     margin:10px;
     width: 100%;
@@ -97,6 +95,7 @@ img {border-radius: 7px;}
     padding-top: 15px;
     display: flex;
     flex-direction: column;
+    break-inside: avoid;
 }
 
 .card2 > div {
