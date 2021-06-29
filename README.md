@@ -4,6 +4,6 @@ Versión en producción: https://genera-tu-cv.vercel.app/
    
 ---  
    
-Application programmed in React / Next.js.  
+Application developed in React / Next.js.  
 It allows registered users to generate their Curriculum Vitae from a pre-established template. The data entered by each user is saved into a MongoDB database to be able to retrieve it and continue editing. The API routes are integrated into the same application.  
 Production version: https://genera-tu-cv.vercel.app/  
