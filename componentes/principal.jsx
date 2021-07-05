@@ -14,8 +14,8 @@ export default function Principal(props) {
                         }
                         return (
                             <div key={j}>
-                                <p><h3>{item.encabezadoP}</h3></p>
-                                <p>{zonaParrafo}</p>
+                                <h3 className="mt-2">{item.encabezadoP}</h3>
+                                <p className="mt-2">{zonaParrafo}</p>
                             </div>
                         )
                     })}
