@@ -69,11 +69,18 @@ export default function FormPrincipal(props) {
         setDatosPrincipal(arrayProvisorio);
     }
 
-    function eliminarApartado(i) {
+    async function eliminarApartado(i) {
         if (datosPrincipal.length > 1) {
-            let arrayProvisorio = [...datosPrincipal];
-            arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-            setDatosPrincipal(arrayProvisorio);
+            const confirmar = await swal({
+                text: "Estás por eliminar el apartado seleccionado",
+                icon: "warning",
+                buttons: ["Cancelar", "Eliminar"],
+            });
+            if (confirmar) {
+                let arrayProvisorio = [...datosPrincipal];
+                arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+                setDatosPrincipal(arrayProvisorio);
+            }
         } else {
             swal("El CV debe tener por lo menos un apartado");
         }
@@ -106,11 +113,18 @@ export default function FormPrincipal(props) {
         setDatosPrincipal(arrayProvisorio);
     }
 
-    function eliminarParrafo(i, j) {
+    async function eliminarParrafo(i, j) {
         if (datosPrincipal[i].items.length > 1) {
-            let arrayProvisorio = [...datosPrincipal];
-            arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
-            setDatosPrincipal(arrayProvisorio);
+            const confirmar = await swal({
+                text: "Estás por eliminar el párrafo seleccionado",
+                icon: "warning",
+                buttons: ["Cancelar", "Eliminar"],
+            });
+            if (confirmar) {
+                let arrayProvisorio = [...datosPrincipal];
+                arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
+                setDatosPrincipal(arrayProvisorio);
+            }
         } else {
             swal("Cada apartado debe tener al menos un párrafo");
         }

@@ -74,11 +74,18 @@ export default function FormLateral(props) {
         setDatosLateral(arrayProvisorio);
     }
 
-    function eliminarCampo(i) {
+    async function eliminarCampo(i) {
         if (datosLateral.length > 1) {
-            let arrayProvisorio = [...datosLateral];
-            arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-            setDatosLateral(arrayProvisorio);
+            const confirmar = await swal({
+                text: "Estás por eliminar el apartado seleccionado",
+                icon: "warning",
+                buttons: ["Cancelar", "Eliminar"],
+            });
+            if (confirmar) {
+                let arrayProvisorio = [...datosLateral];
+                arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+                setDatosLateral(arrayProvisorio);
+            }
         } else {
             swal("La barra lateral debe tener al menos un campo de datos");
         }
