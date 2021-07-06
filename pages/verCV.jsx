@@ -7,9 +7,10 @@ import { preLoader, responderError, hostAPI, obtenerDatosToken } from "../librer
 import React, { useState, useEffect } from 'react';
 import Layout from '../componentes/layout.jsx';
 import { useRouter } from 'next/router';
+import { Button } from 'reactstrap';
+import Link from 'next/link';
 
 export default function VerCV(props) {
-  //const { datosHeader, urlImagen, datosLateral, datosPrincipal } = props;
   const router = useRouter();
   const { token, loading } = props;
   const autorizacion = { headers: { Authorization: token } };
@@ -57,6 +58,10 @@ export default function VerCV(props) {
             <div className="cuerpo">
               <Lateral datosLateral={datosLateral} urlImagen={urlImagen} />
               <Principal datosPrincipal={datosPrincipal} />
+            </div>
+            <div className="barraGuardar flex-row justify-content-center">
+              <Link href="/" passHref><Button className="mx-4" color="primary" size="lg">Volver a editar</Button></Link>
+              <Link href="/instrucciones" passHref><Button className="mx-4" color="primary" size="lg">Instructivo para guardar como PDF</Button></Link>
             </div>
           </div>
         )

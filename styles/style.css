@@ -222,6 +222,8 @@ margin-left:0;
 .barraGuardar{
     position:fixed;
     bottom: 0;
+    left: 0;
+    right: 0;    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -250,6 +252,7 @@ margin-left:0;
 
 .verCV {
     width:770px;
+    margin-bottom: 50px;
 }
 
 .barra-lateral h4{
@@ -270,6 +273,8 @@ padding: 0!important;
 padding: 0!important;
     }
     .card2{
-        margin-bottom:15px!important;
+    }
+    .barraGuardar{
+        display: none;
     }
   }
