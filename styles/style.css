@@ -249,6 +249,7 @@ margin-left:0;
     background-color: aliceblue!important;
     margin-bottom:30px!important;
     min-width: 800px;
+    flex-direction: row;
 }
 
 .verCV {
@@ -262,6 +263,14 @@ margin-left:0;
 
 .barra-lateral p{
     font-size:0.9rem;
+}
+
+.grupo {
+    flex-grow: 1;
+}
+
+.botonera.apart {
+    flex-direction: column;
 }
 
 @media print {
