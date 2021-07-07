@@ -16,28 +16,30 @@ export default function FormPrincipal(props) {
                         <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo} placeholder="Escriba aquí (ejemplo: 'Experiencia laboral')">
                         </Input>
                     </FormGroup>
-                    {datosPrincipal[i].items.map((item, j) => {
-                        return (
-                            <div className="parrafo" key={i + "+" + j}>
-                                <FormGroup>
-                                    <Label><h3>Título del párrafo (optativo)</h3></Label>
-                                    <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label>Párrafo</Label>
-                                    <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplos: 'Empresa X', 'Período 2010-2015')"></Input>
-                                </FormGroup>
-                                <div className="botonera">
-                                    <Button color="primary" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
-                                    <UncontrolledTooltip placement="bottom" target={"subirParrafo" + i + "x" + j} >Reubicar párrafo hacia arriba</UncontrolledTooltip>
-                                    <Button color="primary" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
-                                    <UncontrolledTooltip placement="bottom" target={"bajarParrafo" + i + "x" + j} >Reubicar párrafo hacia abajo</UncontrolledTooltip>
-                                    <Button color="primary" id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
-                                    <UncontrolledTooltip placement="bottom" target={"eliminarParrafo" + i + "x" + j} >Eliminar párrafo</UncontrolledTooltip>
+                    <div className="parrafos">
+                        {datosPrincipal[i].items.map((item, j) => {
+                            return (
+                                <div className="parrafo" key={i + "+" + j}>
+                                    <FormGroup>
+                                        <Label><h3>Título del párrafo (optativo)</h3></Label>
+                                        <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label>Párrafo</Label>
+                                        <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplos: 'Empresa X', 'Período 2010-2015')"></Input>
+                                    </FormGroup>
+                                    <div className="botonera">
+                                        <Button color="primary" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
+                                        <UncontrolledTooltip placement="bottom" target={"subirParrafo" + i + "x" + j} >Reubicar párrafo hacia arriba</UncontrolledTooltip>
+                                        <Button color="primary" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
+                                        <UncontrolledTooltip placement="bottom" target={"bajarParrafo" + i + "x" + j} >Reubicar párrafo hacia abajo</UncontrolledTooltip>
+                                        <Button color="primary" id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
+                                        <UncontrolledTooltip placement="bottom" target={"eliminarParrafo" + i + "x" + j} >Eliminar párrafo</UncontrolledTooltip>
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                     <div className="botonera">
                     </div>
                 </div>
@@ -131,9 +133,16 @@ export default function FormPrincipal(props) {
                 buttons: ["Cancelar", "Eliminar"],
             });
             if (confirmar) {
-                let arrayProvisorio = [...datosPrincipal];
-                arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
-                setDatosPrincipal(arrayProvisorio);
+                const elem = refs.current[i].current.children[0].children[1].children[j];
+                console.log(elem)
+                function callback() {
+                    elem.removeEventListener('transitionend', callback);
+                    let arrayProvisorio = [...datosPrincipal];
+                    arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
+                    setDatosPrincipal(arrayProvisorio);
+                }
+                elem.addEventListener('transitionend', callback);
+                elem.style.opacity = 0;
             }
         } else {
             swal("Cada apartado debe tener al menos un párrafo");

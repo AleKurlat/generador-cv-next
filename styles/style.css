@@ -152,6 +152,7 @@ form{
     padding:20px!important;
     border-radius: 7px;
     border: 1px solid lightgray;
+    transition: opacity 0.2s;
 }
 
 label{
