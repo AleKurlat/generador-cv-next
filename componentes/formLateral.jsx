@@ -77,7 +77,7 @@ export default function FormLateral(props) {
     async function eliminarCampo(i) {
         if (datosLateral.length > 1) {
             const confirmar = await swal({
-                text: "Estás por eliminar el apartado seleccionado",
+                text: "Estás por eliminar el campo de datos seleccionado",
                 icon: "warning",
                 buttons: ["Cancelar", "Eliminar"],
             });

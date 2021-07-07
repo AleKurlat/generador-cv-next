@@ -1,13 +1,15 @@
 import { Form, FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import swal from 'sweetalert';
 
 export default function FormPrincipal(props) {
     const { datosPrincipal, setDatosPrincipal, objPrincipalVacio, itemPrincipalVacio } = props;
+    const refs = useRef(null);
+    refs.current = datosPrincipal.map(elemento => { return createRef() });
 
     let arrayCampos = datosPrincipal.map((el, i) => {
         return (
-            <div key={i} className="card2">
+            <div key={i} className="card2" ref={refs.current[i]} style={{ opacity: 0 }}>
                 <FormGroup>
                     <Label><h2>Titulo del apartado</h2></Label>
                     <Input type="text" onChange={(evento) => { handler(evento, i) }} name="titulo" value={datosPrincipal[i].titulo} placeholder="Escriba aquí (ejemplo: 'Experiencia laboral')">
@@ -77,9 +79,15 @@ export default function FormPrincipal(props) {
                 buttons: ["Cancelar", "Eliminar"],
             });
             if (confirmar) {
-                let arrayProvisorio = [...datosPrincipal];
-                arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-                setDatosPrincipal(arrayProvisorio);
+                const elem = refs.current[i].current;
+                function callback() {
+                    elem.removeEventListener('transitionend', callback);
+                    let arrayProvisorio = [...datosPrincipal];
+                    arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+                    setDatosPrincipal(arrayProvisorio);
+                }
+                elem.addEventListener('transitionend', callback);
+                elem.style.opacity = 0;
             }
         } else {
             swal("El CV debe tener por lo menos un apartado");
@@ -166,6 +174,12 @@ export default function FormPrincipal(props) {
         arrayProvisorio[i].items.push(itemPrincipalVacio);
         setDatosPrincipal(arrayProvisorio);
     }
+
+    useEffect(() => {
+        refs.current.forEach(element => {
+            element.current.style.opacity = 1;
+        });
+    }, [datosPrincipal.length])
 
     return (
         <section className="cuadroPrincipal">
