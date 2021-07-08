@@ -1,5 +1,5 @@
 import { Form, FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
-import React, { useState, useEffect, useRef, createRef } from 'react';
+import React, { useEffect, useRef, createRef } from 'react';
 import swal from 'sweetalert';
 import EditParrafo from './editParrafo';
 
@@ -101,7 +101,6 @@ export default function FormPrincipal(props) {
         arrayProvisorio.splice(nuevoOrden, 0, elementoMovido);
         setDatosPrincipal(arrayProvisorio);
     }
-
 
     function agregarParrafo(i) {
         let arrayProvisorio = [...datosPrincipal];
