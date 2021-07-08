@@ -1,8 +1,12 @@
 import { FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
+import { useEffect, useRef } from 'react';
 import swal from 'sweetalert';
 
 export default function EditCampoLat(props) {
     const { i, datosLateral, setDatosLateral } = props;
+    const referencia = useRef(null);
+
+    useEffect(() => { referencia.current.style.opacity = 1 }, [])
 
     function handler(evento, i) {
         let arrayProvisorio = [...datosLateral];
@@ -45,9 +49,15 @@ export default function EditCampoLat(props) {
                 buttons: ["Cancelar", "Eliminar"],
             });
             if (confirmar) {
-                let arrayProvisorio = [...datosLateral];
-                arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-                setDatosLateral(arrayProvisorio);
+                const elem = referencia.current;
+                function callback() {
+                    elem.removeEventListener('transitionend', callback);
+                    let arrayProvisorio = [...datosLateral];
+                    arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+                    setDatosLateral(arrayProvisorio);
+                }
+                elem.addEventListener('transitionend', callback);
+                elem.style.opacity = 0;
             }
         } else {
             swal("La barra lateral debe tener al menos un campo de datos");
@@ -55,7 +65,7 @@ export default function EditCampoLat(props) {
     }
 
     return (
-        <div className="parrafo">
+        <div className="parrafo" ref={referencia} style={{ opacity: 0 }}>
             <FormGroup>
                 <Label>
                     <h4>Tipo de dato </h4>
