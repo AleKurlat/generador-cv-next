@@ -2,12 +2,10 @@ import { FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap
 import { useEffect, useRef } from 'react';
 
 export default function editParrafo(props) {
-    const { item, j, i, datosPrincipal, refs, setDatosPrincipal } = props;
+    const { item, j, i, datosPrincipal, setDatosPrincipal } = props;
     const referencia = useRef(null);
 
-    useEffect(() => {
-        referencia.current.style.opacity = 1;
-    }, [])
+    useEffect(() => { referencia.current.style.opacity = 1 }, [])
 
     function handlerItem(evento, i, j) {
         let arrayProvisorio = [...datosPrincipal];

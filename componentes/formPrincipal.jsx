@@ -19,7 +19,7 @@ export default function FormPrincipal(props) {
                     </FormGroup>
                     <div className="parrafos">
                         {datosPrincipal[i].items.map((item, j) => {
-                            const objProps = { item, j, i, datosPrincipal, refs, setDatosPrincipal }
+                            const objProps = { item, j, i, datosPrincipal, setDatosPrincipal }
                             return <EditParrafo {...objProps} key={i + "+" + j} />
                         })}
                     </div>
