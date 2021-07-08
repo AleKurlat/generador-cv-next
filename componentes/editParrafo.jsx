@@ -1,11 +1,14 @@
 import { FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function editParrafo(props) {
     const { item, j, i, datosPrincipal, setDatosPrincipal } = props;
     const referencia = useRef(null);
+    const [clase, setClase] = useState("parrafo inicial")
 
-    useEffect(() => { referencia.current.style.opacity = 1 }, [])
+    useEffect(() => {
+        setClase("parrafo");
+    }, [])
 
     function handlerItem(evento, i, j) {
         let arrayProvisorio = [...datosPrincipal];
@@ -68,7 +71,7 @@ export default function editParrafo(props) {
     }
 
     return (
-        <div className="parrafo" ref={referencia} style={{ opacity: 0 }}>
+        <div className={clase} ref={referencia} >
             <FormGroup>
                 <Label><h3>Título del párrafo (optativo)</h3></Label>
                 <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>

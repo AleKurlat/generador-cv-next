@@ -274,6 +274,10 @@ margin-left:0;
     flex-direction: column;
 }
 
+.inicial{
+    opacity:0;
+}
+
 @media print {
     body {
 margin: 0!important;
