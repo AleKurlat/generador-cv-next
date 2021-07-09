@@ -2,7 +2,7 @@ import FormHeader from "../componentes/formHeader";
 import FormLateral from "../componentes/formLateral";
 import FormPrincipal from "../componentes/formPrincipal";
 import FormImagen from "../componentes/formImagen";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'reactstrap';
 import { useRouter } from 'next/router';
 import axios from "axios";
@@ -23,10 +23,10 @@ export default function Home(props) {
     const [datosPrincipal, setDatosPrincipal] = useState(principalVacio);
     const [statePreLoader, preLoaderOn] = useState(false);
     const [CVCargado, setCVCargado] = useState(false);
-    const [intervaloOn, setIntervaloOn] = useState(false);
     const { token, loading } = props;
     const autorizacion = { headers: { Authorization: token } };
-    const [contador, setContador] = useState(0)
+    const savedCallback = useRef();
+    const intervalo = useRef();
 
     async function traerCV() {
         try {
@@ -44,51 +44,43 @@ export default function Home(props) {
                 }
             }
         }
-        catch (e) {
-            return responderError(e)
-        }
+        catch (e) { return responderError(e) }
     }
 
     async function guardarCV() {
         try {
-            const datosToken = obtenerDatosToken(token);
-            const id = datosToken.user_id;
-            const urlAPI = hostAPI + "/cvs/" + id;
-            const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
-            await axios.put(urlAPI, objeto, autorizacion);
+            if (token && CVCargado) {
+                const datosToken = obtenerDatosToken(token);
+                const id = datosToken.user_id;
+                const urlAPI = hostAPI + "/cvs/" + id;
+                const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
+                await axios.put(urlAPI, objeto, autorizacion);
+                console.log("Los datos ingresados fueron guardados");
+            }
         }
         catch (e) {
             return responderError(e)
         }
     }
 
-    useEffect(async () => {
-        if (token) {
+    useEffect(savedCallback.current = guardarCV, []);
+
+    useEffect(() => {
+        async function iniciarPagina() {
             preLoaderOn(true);
             await traerCV();
             preLoaderOn(false);
-            setIntervaloOn(true);
+            function tick() { savedCallback.current() }
+            intervalo.current = setInterval(tick, 10000);
+        }
+        if (token) {
+            iniciarPagina();
+            return () => {
+                clearInterval(intervalo.current);
+                console.log("Componente desmontado");
+            }
         }
     }, [token]);
-
-    useEffect(() => {
-        let intervalo;
-        if (intervaloOn) {
-            setInterval(() => {
-                setContador(contador => contador + 1)
-            }, 20000)
-        }
-        return () => {
-            clearInterval(intervalo);
-        }
-    }, [intervaloOn])
-
-    useEffect(() => {
-        if (intervaloOn) {
-            console.log("Guardando automáticamente los datos ingresados")
-            guardarCV();
-        }
-    }, [contador, intervaloOn])
 
     let zonaPreLoader;
     if (statePreLoader) { zonaPreLoader = preLoader };
