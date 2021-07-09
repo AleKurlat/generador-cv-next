@@ -28,8 +28,6 @@ export default function Home(props) {
     const savedCallback = useRef();
     const intervalo = useRef();
 
-    savedCallback.current = guardarCV;
-
     async function traerCV() {
         try {
             const datosToken = obtenerDatosToken(token);
@@ -72,6 +70,8 @@ export default function Home(props) {
         function tick() { savedCallback.current() }
         intervalo.current = setInterval(tick, 10000);
     }
+
+    useEffect(() => { savedCallback.current = guardarCV }, [guardarCV]);
 
     useEffect(() => {
         if (token) {
