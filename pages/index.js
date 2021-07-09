@@ -28,6 +28,8 @@ export default function Home(props) {
     const savedCallback = useRef();
     const intervalo = useRef();
 
+    savedCallback.current = guardarCV;
+
     async function traerCV() {
         try {
             const datosToken = obtenerDatosToken(token);
@@ -56,23 +58,22 @@ export default function Home(props) {
                 const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
                 await axios.put(urlAPI, objeto, autorizacion);
                 console.log("Los datos ingresados fueron guardados");
-            }
+            } else { console.log("No guardado"); console.log(datosPrincipal) }
         }
         catch (e) {
             return responderError(e)
         }
     }
 
-    useEffect(savedCallback.current = guardarCV, []);
+    async function iniciarPagina() {
+        preLoaderOn(true);
+        await traerCV();
+        preLoaderOn(false);
+        function tick() { savedCallback.current() }
+        intervalo.current = setInterval(tick, 10000);
+    }
 
     useEffect(() => {
-        async function iniciarPagina() {
-            preLoaderOn(true);
-            await traerCV();
-            preLoaderOn(false);
-            function tick() { savedCallback.current() }
-            intervalo.current = setInterval(tick, 10000);
-        }
         if (token) {
             iniciarPagina();
             return () => {
