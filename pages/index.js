@@ -56,6 +56,7 @@ export default function Home(props) {
                 const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
                 await axios.put(urlAPI, objeto, autorizacion);
                 console.log("Los datos ingresados fueron guardados");
+                console.log(datosPrincipal.length);
             } else { console.log("No guardado"); console.log(datosPrincipal) }
         }
         catch (e) {
@@ -67,8 +68,7 @@ export default function Home(props) {
         preLoaderOn(true);
         await traerCV();
         preLoaderOn(false);
-        function tick() { savedCallback.current() }
-        intervalo.current = setInterval(tick, 10000);
+        intervalo.current = setInterval(() => { savedCallback.current() }, 10000);
     }
 
     useEffect(() => { savedCallback.current = guardarCV }, [guardarCV]);
