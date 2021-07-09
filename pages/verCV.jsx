@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Header from "../componentes/header";
-import Lateral from "../componentes/lateral";
-import Principal from "../componentes/principal";
+import Header from "../componentes/verCV/header";
+import Lateral from "../componentes/verCV/lateral";
+import Principal from "../componentes/verCV/principal";
 import axios from "axios";
 import { preLoader, responderError, hostAPI, obtenerDatosToken } from "../librerias/lib.jsx";
 import React, { useState, useEffect } from 'react';

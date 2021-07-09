@@ -1,7 +1,7 @@
-import FormHeader from "../componentes/formHeader";
-import FormLateral from "../componentes/formLateral";
-import FormPrincipal from "../componentes/formPrincipal";
-import FormImagen from "../componentes/formImagen";
+import FormHeader from "../componentes/editarCV/header/formHeader";
+import FormLateral from "../componentes/editarCV/lateral/formLateral";
+import FormPrincipal from "../componentes/editarCV/principal/formPrincipal";
+import FormImagen from "../componentes/editarCV/lateral/formImagen";
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'reactstrap';
 import { useRouter } from 'next/router';
