@@ -37,7 +37,12 @@ export default function Home(props) {
             if (loguear && loguear.status === 200) {
                 if (loguear.data) {
                     if (loguear.data.datosHeader) { setDatosHeader(loguear.data.datosHeader) }
-                    if (loguear.data.datosLateral) { setDatosLateral(loguear.data.datosLateral) }
+                    if (loguear.data.datosLateral) {
+                        loguear.data.datosLateral.forEach((campo, i) => {
+                            campo.id = i;
+                        })
+                        setDatosLateral(loguear.data.datosLateral)
+                    }
                     if (loguear.data.datosPrincipal) {
                         loguear.data.datosPrincipal.forEach((apartado, i) => {
                             apartado.id = i;

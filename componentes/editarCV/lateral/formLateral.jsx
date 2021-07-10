@@ -5,12 +5,17 @@ export default function FormLateral(props) {
     const { datosLateral, setDatosLateral, objLateralVacio } = props;
     let arrayCampos = datosLateral.map((el, i) => {
         const objProps = { i, datosLateral, setDatosLateral }
-        return <EditCampoLat key={i} {...objProps} />
+        return <EditCampoLat key={el.id} {...objProps} />
     });
 
     function agregarCampo() {
+
+        const arrayIDs = datosLateral.map((campo) => { return (campo.id) });
+        const maximoID = Math.max(...arrayIDs);
+        const nuevoCampo = { ...objLateralVacio };
+        nuevoCampo.id = maximoID + 1;
         let arrayProvisorio = [...datosLateral];
-        arrayProvisorio.push(objLateralVacio);
+        arrayProvisorio.push(nuevoCampo);
         setDatosLateral(arrayProvisorio);
     }
 
