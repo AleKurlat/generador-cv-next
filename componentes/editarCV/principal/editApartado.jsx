@@ -67,8 +67,12 @@ export default function EditApartado(props) {
     }
 
     function agregarParrafo(i) {
+        const arrayIDs = datosPrincipal[i].items.map((parrafo) => { return (parrafo.id) });
+        const maximoID = Math.max(...arrayIDs);
+        const nuevoParrafo = { ...itemPrincipalVacio };
+        nuevoParrafo.id = maximoID + 1;
         let arrayProvisorio = [...datosPrincipal];
-        arrayProvisorio[i].items.push(itemPrincipalVacio);
+        arrayProvisorio[i].items.push(nuevoParrafo);
         setDatosPrincipal(arrayProvisorio);
     }
 
@@ -83,7 +87,7 @@ export default function EditApartado(props) {
                 <div className="parrafos">
                     {datosPrincipal[i].items.map((item, j) => {
                         const objProps = { item, j, i, datosPrincipal, setDatosPrincipal }
-                        return <EditParrafo {...objProps} key={i + "+" + j} />
+                        return <EditParrafo {...objProps} key={item.id} />
                     })}
                 </div>
                 <div className="botonera">
