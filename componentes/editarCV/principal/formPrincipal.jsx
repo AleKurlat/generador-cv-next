@@ -5,8 +5,12 @@ export default function FormPrincipal(props) {
     const { datosPrincipal, setDatosPrincipal, objPrincipalVacio, itemPrincipalVacio } = props;
 
     function agregarApartado() {
+        const arrayIDs = datosPrincipal.map((apartado) => { return (apartado.id) });
+        const maximoID = Math.max(...arrayIDs);
+        const nuevoApartado = { ...objPrincipalVacio };
+        nuevoApartado.id = maximoID + 1;
         let arrayProvisorio = [...datosPrincipal];
-        arrayProvisorio.push(objPrincipalVacio);
+        arrayProvisorio.push(nuevoApartado);
         setDatosPrincipal(arrayProvisorio);
     }
 
@@ -15,7 +19,7 @@ export default function FormPrincipal(props) {
             <Form>
                 {datosPrincipal.map((el, i) => {
                     const objProps = { i, datosPrincipal, setDatosPrincipal, itemPrincipalVacio }
-                    return <EditApartado key={i} {...objProps} />
+                    return <EditApartado key={el.id} {...objProps} />
                 })}
                 <div className="botonera">
                     <Button color="primary" id="agregarApartado" onClick={agregarApartado} style={{ "marginBottom": "20px" }}><img src="/agregar.svg" /></Button>
