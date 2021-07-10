@@ -90,7 +90,6 @@ export default function Home(props) {
             iniciarPagina();
             return () => {
                 clearInterval(intervalo.current);
-                console.log("Componente desmontado");
             }
         }
     }, [token]);
