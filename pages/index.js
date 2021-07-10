@@ -38,7 +38,15 @@ export default function Home(props) {
                 if (loguear.data) {
                     if (loguear.data.datosHeader) { setDatosHeader(loguear.data.datosHeader) }
                     if (loguear.data.datosLateral) { setDatosLateral(loguear.data.datosLateral) }
-                    if (loguear.data.datosPrincipal) { setDatosPrincipal(loguear.data.datosPrincipal) }
+                    if (loguear.data.datosPrincipal) {
+                        loguear.data.datosPrincipal.forEach((apartado, i) => {
+                            apartado.id = i;
+                            apartado.items.forEach((parrafo, j) => {
+                                parrafo.id = j;
+                            })
+                        })
+                        setDatosPrincipal(loguear.data.datosPrincipal)
+                    }
                     if (loguear.data.urlImagen) { setUrlImagen(loguear.data.urlImagen); }
                     setCVCargado(true);
                 }
@@ -56,7 +64,6 @@ export default function Home(props) {
                 const objeto = { "cv": { datosHeader, urlImagen, datosLateral, datosPrincipal } }
                 await axios.put(urlAPI, objeto, autorizacion);
                 console.log("Los datos ingresados fueron guardados");
-                console.log(datosPrincipal.length);
             } else { console.log("No guardado"); console.log(datosPrincipal) }
         }
         catch (e) {
