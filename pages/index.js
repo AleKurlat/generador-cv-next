@@ -14,7 +14,7 @@ export default function Home(props) {
     const headerVacio = { nombre: "", descripcion: "" };
     const objLateralVacio = { nombreItem: "", valorItem: "" };
     const itemPrincipalVacio = { encabezadoP: "", parrafo: "" };
-    const objPrincipalVacio = { titulo: "", subtitulo: "", items: [itemPrincipalVacio] };
+    const objPrincipalVacio = { titulo: "", items: [itemPrincipalVacio] };
     const lateralVacio = [objLateralVacio];
     const principalVacio = [objPrincipalVacio];
     const [datosHeader, setDatosHeader] = useState(headerVacio);
@@ -68,7 +68,7 @@ export default function Home(props) {
         preLoaderOn(true);
         await traerCV();
         preLoaderOn(false);
-        intervalo.current = setInterval(() => { savedCallback.current() }, 10000);
+        intervalo.current = setInterval(() => { savedCallback.current() }, 20000);
     }
 
     useEffect(() => { savedCallback.current = guardarCV }, [guardarCV]);
