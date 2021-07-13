@@ -1,14 +1,21 @@
 import { FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function editParrafo(props) {
     const { item, j, i, datosPrincipal, setDatosPrincipal } = props;
-    const referencia = useRef(null);
     const [clase, setClase] = useState("parrafo inicial")
 
     useEffect(() => {
         setClase("parrafo");
     }, [])
+
+    function onBorrado() {
+        if (clase === "parrafo borrado") {
+            let arrayProvisorio = [...datosPrincipal];
+            arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
+            setDatosPrincipal(arrayProvisorio);
+        }
+    }
 
     function handlerItem(evento, i, j) {
         let arrayProvisorio = [...datosPrincipal];
@@ -24,15 +31,7 @@ export default function editParrafo(props) {
                 buttons: ["Cancelar", "Eliminar"],
             });
             if (confirmar) {
-                const elem = referencia.current;
-                function callback() {
-                    elem.removeEventListener('transitionend', callback);
-                    let arrayProvisorio = [...datosPrincipal];
-                    arrayProvisorio[i].items = arrayProvisorio[i].items.filter((el, h) => { return (h != j) });
-                    setDatosPrincipal(arrayProvisorio);
-                }
-                elem.addEventListener('transitionend', callback);
-                elem.style.opacity = 0;
+                setClase("parrafo borrado")
             }
         } else {
             swal("Cada apartado debe tener al menos un párrafo");
@@ -71,22 +70,24 @@ export default function editParrafo(props) {
     }
 
     return (
-        <div className={clase} ref={referencia} >
-            <FormGroup>
-                <Label><h3>Título del párrafo (optativo)</h3></Label>
-                <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>
-            </FormGroup>
-            <FormGroup>
-                <Label>Párrafo</Label>
-                <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplos: 'Empresa X', 'Período 2010-2015')"></Input>
-            </FormGroup>
-            <div className="botonera">
-                <Button color="primary" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
-                <UncontrolledTooltip placement="bottom" target={"subirParrafo" + i + "x" + j} >Reubicar párrafo hacia arriba</UncontrolledTooltip>
-                <Button color="primary" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
-                <UncontrolledTooltip placement="bottom" target={"bajarParrafo" + i + "x" + j} >Reubicar párrafo hacia abajo</UncontrolledTooltip>
-                <Button color="primary" id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
-                <UncontrolledTooltip placement="bottom" target={"eliminarParrafo" + i + "x" + j} >Eliminar párrafo</UncontrolledTooltip>
+        <div className={clase} onTransitionEnd={onBorrado} >
+            <div onTransitionEnd={(e) => { e.stopPropagation() }}>
+                <FormGroup>
+                    <Label><h3>Título del párrafo (optativo)</h3></Label>
+                    <Input type="text" value={item.encabezadoP} name="encabezadoP" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplo: 'Atención al cliente')"></Input>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Párrafo</Label>
+                    <Input type="textarea" rows="4" value={item.parrafo} name="parrafo" onChange={(evento) => { handlerItem(evento, i, j) }} placeholder="Escriba aquí (ejemplos: 'Empresa X', 'Período 2010-2015')"></Input>
+                </FormGroup>
+                <div className="botonera" >
+                    <Button color="primary" id={"subirParrafo" + i + "x" + j} onClick={() => { subirParrafo(i, j) }}> <img src="/arrowup.png" /></Button>
+                    <UncontrolledTooltip placement="bottom" target={"subirParrafo" + i + "x" + j} >Reubicar párrafo hacia arriba</UncontrolledTooltip>
+                    <Button color="primary" id={"bajarParrafo" + i + "x" + j} onClick={() => { bajarParrafo(i, j) }}> <img src="/arrowdown.png" /></Button>
+                    <UncontrolledTooltip placement="bottom" target={"bajarParrafo" + i + "x" + j} >Reubicar párrafo hacia abajo</UncontrolledTooltip>
+                    <Button color="primary" id={"eliminarParrafo" + i + "x" + j} onClick={() => { eliminarParrafo(i, j) }}><img src="/eliminar.svg" /></Button>
+                    <UncontrolledTooltip placement="bottom" target={"eliminarParrafo" + i + "x" + j} >Eliminar párrafo</UncontrolledTooltip>
+                </div>
             </div>
         </div>
     )
