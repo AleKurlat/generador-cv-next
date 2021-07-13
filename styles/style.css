@@ -278,6 +278,10 @@ margin-left:0;
     opacity:0;
 }
 
+.borrado{
+    opacity:0;    
+}
+
 @media print {
     body {
 margin: 0!important;
