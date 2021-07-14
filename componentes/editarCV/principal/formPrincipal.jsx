@@ -8,6 +8,7 @@ export default function FormPrincipal(props) {
         const arrayIDs = datosPrincipal.map((apartado) => { return (apartado.id) });
         const maximoID = Math.max(...arrayIDs);
         const nuevoApartado = { ...objPrincipalVacio };
+        nuevoApartado.items[0].id = 0;
         nuevoApartado.id = maximoID + 1;
         let arrayProvisorio = [...datosPrincipal];
         arrayProvisorio.push(nuevoApartado);
