@@ -50,14 +50,19 @@ export default function EditCampoLat(props) {
             });
             if (confirmar) {
                 const elem = referencia.current;
-                function callback() {
-                    elem.removeEventListener('transitionend', callback);
-                    let arrayProvisorio = [...datosLateral];
-                    arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-                    setDatosLateral(arrayProvisorio);
-                }
-                elem.addEventListener('transitionend', callback);
+                //Promise para esperar a que termine la transición CSS de la propiedad "opacity" del elemento borrado antes de ejecutar el código que vuelve a renderizar el componente. El condicional garantiza que la transición a) no provenga de un elemento HTML anidado (como los botones) y b) que sea el resultado del borrado y no del agregado.
+                const onBorrado = new Promise((resolve) => {
+                    elem.addEventListener("transitionend", (e) => {
+                        if (e.target === e.currentTarget && referencia.current.style.opacity == 0) {
+                            resolve();
+                        }
+                    })
+                })
                 elem.style.opacity = 0;
+                await onBorrado;
+                let arrayProvisorio = [...datosLateral];
+                arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+                setDatosLateral(arrayProvisorio);
             }
         } else {
             swal("La barra lateral debe tener al menos un campo de datos");
