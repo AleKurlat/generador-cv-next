@@ -8,6 +8,14 @@ export default function EditApartado(props) {
     const { i, datosPrincipal, setDatosPrincipal, itemPrincipalVacio } = props;
     const referencia = useRef(null);
 
+    function onBorrado(e) {
+        if (e.target === e.currentTarget && referencia.current.style.opacity == 0) {
+            let arrayProvisorio = [...datosPrincipal];
+            arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+            setDatosPrincipal(arrayProvisorio);
+        }
+    }
+
     useEffect(() => { referencia.current.style.opacity = 1 }, [])
 
     function handler(evento, i) {
@@ -23,17 +31,7 @@ export default function EditApartado(props) {
                 icon: "warning",
                 buttons: ["Cancelar", "Eliminar"],
             });
-            if (confirmar) {
-                const elem = referencia.current;
-                function callback() {
-                    elem.removeEventListener('transitionend', callback);
-                    let arrayProvisorio = [...datosPrincipal];
-                    arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-                    setDatosPrincipal(arrayProvisorio);
-                }
-                elem.addEventListener('transitionend', callback);
-                elem.style.opacity = 0;
-            }
+            if (confirmar) { referencia.current.style.opacity = 0 }
         } else {
             swal("El CV debe tener por lo menos un apartado");
         }
@@ -77,7 +75,7 @@ export default function EditApartado(props) {
     }
 
     return (
-        <div className="card2" ref={referencia} style={{ opacity: 0 }}>
+        <div className="card2" ref={referencia} style={{ opacity: 0 }} onTransitionEnd={onBorrado} >
             <div className="grupo">
                 <FormGroup>
                     <Label><h2>Titulo del apartado</h2></Label>
