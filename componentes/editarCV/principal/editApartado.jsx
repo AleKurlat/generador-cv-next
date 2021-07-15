@@ -1,22 +1,15 @@
 import { FormGroup, Input, Button, Label, UncontrolledTooltip } from 'reactstrap';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditParrafo from './editParrafo';
 import swal from 'sweetalert';
 
 export default function EditApartado(props) {
 
     const { i, datosPrincipal, setDatosPrincipal, itemPrincipalVacio } = props;
-    const referencia = useRef(null);
+    const [opacidad, setOpacidad] = useState(0);
+    const duration = 400; // duración de la transición de la propiedad "opacity"
 
-    function onBorrado(e) {
-        if (e.target === e.currentTarget && referencia.current.style.opacity == 0) {
-            let arrayProvisorio = [...datosPrincipal];
-            arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
-            setDatosPrincipal(arrayProvisorio);
-        }
-    }
-
-    useEffect(() => { referencia.current.style.opacity = 1 }, [])
+    useEffect(() => { setOpacidad(1) }, [])
 
     function handler(evento, i) {
         let arrayProvisorio = [...datosPrincipal];
@@ -31,7 +24,16 @@ export default function EditApartado(props) {
                 icon: "warning",
                 buttons: ["Cancelar", "Eliminar"],
             });
-            if (confirmar) { referencia.current.style.opacity = 0 }
+            if (confirmar) {
+                setOpacidad(0);
+                const transicionBorrado = new Promise((resolve) => {
+                    setTimeout(() => { resolve() }, duration)
+                })
+                await transicionBorrado;
+                let arrayProvisorio = [...datosPrincipal];
+                arrayProvisorio = arrayProvisorio.filter((el, j) => { return (j != i) });
+                setDatosPrincipal(arrayProvisorio);
+            }
         } else {
             swal("El CV debe tener por lo menos un apartado");
         }
@@ -75,7 +77,7 @@ export default function EditApartado(props) {
     }
 
     return (
-        <div className="card2" ref={referencia} style={{ opacity: 0 }} onTransitionEnd={onBorrado} >
+        <div className="card2" style={{ opacity: opacidad, transition: `opacity ${duration}ms ease-in-out` }}>
             <div className="grupo">
                 <FormGroup>
                     <Label><h2>Titulo del apartado</h2></Label>
