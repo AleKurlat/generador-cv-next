@@ -282,6 +282,33 @@ margin-left:0;
     opacity:0;    
 }
 
+@media (max-width: 600px) {
+.contenedor{
+    width:auto;
+}
+
+.editarCV .card2{
+    min-width: 0;
+    display: block;
+}
+
+.barra-lateral{
+    float:none;
+    width:auto;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.botonera.apart {
+    flex-direction: row;
+}
+
+.editarCV .layout {
+    margin-bottom: 100px;
+}
+
+}
+
 @media print {
     body {
 margin: 0!important;
