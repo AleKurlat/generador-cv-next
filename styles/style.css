@@ -227,13 +227,13 @@ margin-left:0;
     left: 0;
     right: 0;    
     display: flex;
-    flex-direction: column;
     align-items: center;
     background-color: #f7f9fa;
     padding: 5px;
     border-radius:7px;
     border: 1px solid #ebeef0;
     width: 100%;
+    justify-content: center;
 }
 
 .editarCV{
@@ -297,6 +297,7 @@ margin-left:0;
     width:auto;
     margin-right: 0;
     margin-bottom: 20px;
+    height: auto;
 }
 
 .botonera.apart {
@@ -305,6 +306,15 @@ margin-left:0;
 
 .editarCV .layout {
     margin-bottom: 100px;
+}
+
+.barraGuardar{
+flex-direction: column;
+}
+
+.verCV {
+    width: 100%;
+    margin-bottom: 120px;
 }
 
 }

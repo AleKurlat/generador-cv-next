@@ -116,7 +116,7 @@ export default function Home(props) {
                                 </div>
                             </div>
                         </Layout>
-                        <div className="barraGuardar">
+                        <div className="barraGuardar flex-column">
                             {zonaPreLoader}
                             <Button onClick={async () => { preLoaderOn(true); await guardarCV(); preLoaderOn(false); router.push("/verCV"); }} color="primary" size="lg">Generar CV</Button>
                             <div>Los datos ingresados se guardan automáticamente cada 20 segundos</div>

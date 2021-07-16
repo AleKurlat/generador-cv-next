@@ -59,7 +59,7 @@ export default function VerCV(props) {
               <Lateral datosLateral={datosLateral} urlImagen={urlImagen} />
               <Principal datosPrincipal={datosPrincipal} />
             </div>
-            <div className="barraGuardar flex-row justify-content-center">
+            <div className="barraGuardar">
               <Link href="/" passHref><Button className="mx-4" color="primary" size="lg">Volver a editar</Button></Link>
               <Link href="/instrucciones" passHref><Button className="mx-4" color="primary" size="lg">Instructivo para guardar como PDF</Button></Link>
             </div>
