@@ -282,7 +282,7 @@ margin-left:0;
     opacity:0;    
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
 .contenedor{
     width:auto;
 }
